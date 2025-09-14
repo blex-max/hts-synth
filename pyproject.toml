@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["hts-synth*"]
+
+[project]
+name = "hts-synth"
+version = "0.0.0-alpha0"
+description = "constrained generators for synthetic hts data"
+authors = [
+  {name = "Alex Byrne"}
+]
+license = "MIT"
+readme = "README.md"
+dependencies = [
+  "pysam>=0.22, ==0.*",
+]
+requires-python = ">= 3.12"
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.*",
+  "pytest-cov==6.*"
+]
+
