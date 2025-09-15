@@ -23,3 +23,5 @@ jobs:
 
       - name: Run linting
         uses: astral-sh/ruff-action@v3
+        env:
+          RUFF_OUTPUT_FORMAT: github
