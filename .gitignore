@@ -1,3 +1,6 @@
 .env/
 .DS_Store
 hts_synth.egg-info/
+
+# Virtual environment
+*venv*/
