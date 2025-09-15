@@ -4,3 +4,7 @@ hts_synth.egg-info/
 
 # Virtual environment
 *venv*/
+
+# Python
+__pycache__/
+*.py[cod]
