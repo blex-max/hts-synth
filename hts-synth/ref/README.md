@@ -7,5 +7,5 @@
 
 ```python
 # valiant -> seq_converter.py
-def apply_variants(ref_seq: Seq, alt_length: int, variants: Sequence[Variant]) -> Seq
+def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]) -> str
 ```
