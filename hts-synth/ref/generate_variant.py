@@ -1,12 +1,12 @@
 import random
 from typing import Sequence
-from .enums import VariantType
+from enums import VariantType
 import numpy as np
-from .variant import Variant
+from variant import Variant
 
 class VariantGenerator():
 
-    def __init__(self, ref_sequence: Sequence[str], events: Sequence[int]):
+    def __init__(self, ref_sequence: str, events: Sequence[int]):
         """
         Generate a synthetic sequence of variants, simulating the contents of a VCF file
         :param ref_sequence: reference sequence
@@ -30,7 +30,7 @@ class VariantGenerator():
         total_length = max(ref_length, alt_length)
         num_events = num_insertions + num_deletions + num_substitutions
 
-        event_indices = np.random.permutation(total_length)[:num_events]
+        event_indices = list(np.random.permutation(total_length)[:num_events])
 
         variant_sequence = []
         for i in range(total_length):
@@ -42,12 +42,11 @@ class VariantGenerator():
 
     def get_ref_alt(self, index, event_indices, num_insertions, num_deletions):
         if index in event_indices:
-            if index < num_insertions:
+            if event_indices.index(index) < num_insertions:
                 self.ref_offset -= 1
                 return None, random.choice(self.bases)
-            elif index < num_deletions:
+            elif event_indices.index(index) < num_insertions + num_deletions:
                 ref_value = self.ref_sequence[index + self.ref_offset]
-                self.ref_offset += 1
                 return ref_value, None
             else:
                 return self.ref_sequence[index + self.ref_offset], random.choice(self.bases)
