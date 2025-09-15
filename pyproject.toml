@@ -62,3 +62,6 @@ convention = "pep257"
 
 [tool.pyright]
 ignore = ["scratch-api.py"]
+reportAny = false
+reportExplicitAny = false
+reportUnnecessaryIsInstance = false
