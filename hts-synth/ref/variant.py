@@ -16,17 +16,15 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #############################
 
-# Modified 2025 (unfinished!)
+# Modified 2025
 
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import Callable, NoReturn
+from typing import NoReturn
 
-from .constants import NT_SNVS
 from .enums import VariantType
-# from .utils import get_end
-# from .var_stats import VarStats
+from .utils import get_end
 
 
 # TODO: drop when frozen dataclasses with slots are fixed in CPython
@@ -71,17 +69,6 @@ class Variant:
         return get_end(self.pos, self.ref_len)
 
     @property
-    def ref_range(self) -> UIntRange:
-        return UIntRange(self.pos, self.ref_end)
-
-    def is_in_range(self, r: UIntRange) -> bool:
-        return self.pos in r or self.ref_end in r
-
-    @property
-    def stats(self) -> VarStats:
-        return VarStats(self.pos, self.ref_len, self.alt_len)
-
-    @property
     def type(self) -> VariantType:
         if self.ref:
             return (
@@ -97,52 +84,19 @@ class Variant:
         return self.type == VariantType.INSERTION
 
     @classmethod
-    def get_snvs(cls, pos: int, nt: Nucleotide) -> list[Variant]:
-        """Create the three SNV's for a given position"""
-
-        return [
-            cls(pos, nt, DnaStr(nt_alt))
-            for nt_alt in NT_SNVS[nt]
-        ]
-
-    @classmethod
-    def get_del(cls, start: int, ref: DnaStr) -> Variant:
+    def get_del(cls, start: int, ref: str) -> Variant:
         """Create a deletion"""
 
-        return cls(start, ref, DnaStr.empty())
+        return cls(start, ref, '')
 
     @classmethod
-    def get_ins(cls, start: int, alt: DnaStr) -> Variant:
+    def get_ins(cls, start: int, alt: str) -> Variant:
         """Create an insertion"""
 
-        return cls(start, DnaStr.empty(), alt)
+        return cls(start, '', alt)
 
     def clone(self, pos: int | None = None):
         return replace(self, pos=pos if pos is not None else self.pos)
 
     def offset(self, offset: int):
         return self.clone(pos=self.pos + offset)
-
-    def any_pos(self, pos_cond_f: Callable[[int], bool]) -> bool:
-        """Test if any of the reference positions statisfies a condition"""
-
-        return any(
-            pos_cond_f(x)
-            for x in self.ref_range.positions
-        ) if self.ref_len > 1 else pos_cond_f(self.pos)
-
-    def get_oligo_name_frag(self) -> str:
-        pos_frag = (
-            str(self.pos) if self.ref_len <= 1 else
-            f"{self.pos}_{self.ref_end}"
-        )
-
-        match self.type:
-            case VariantType.DELETION:
-                return pos_frag
-            case VariantType.SUBSTITUTION:
-                return f"{pos_frag}_{self.ref}>{self.alt}"
-            case VariantType.INSERTION:
-                return f"{pos_frag}_{self.alt}"
-            case VariantType.UNKNOWN:
-                raise ValueError("Unknown variant type!")
