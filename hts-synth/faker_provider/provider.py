@@ -34,5 +34,5 @@ class ReadProvider(BaseProvider):
         'ACGTACGTAC'
     """
 
-    def read(self) -> Read:
-        return generate_read()
+    def read(self, length:int =10) -> Read:
+        return generate_read(length=length)
