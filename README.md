@@ -20,3 +20,18 @@ source ./.venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
+
+### Linting and Typing
+
+Ruff is used for linting
+
+```sh
+python -m ruff format
+python -m ruff check --fix
+```
+
+Basedpyright for typing
+
+```sh
+python -m basedpyright
+```
