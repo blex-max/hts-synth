@@ -31,7 +31,6 @@ class VariantGenerator():
         num_events = num_insertions + num_deletions + num_substitutions
 
         event_indices = list(np.random.permutation(total_length)[:num_events])
-        print(f'Event indices: {event_indices}')
 
         variant_sequence = []
         for i in range(total_length):
