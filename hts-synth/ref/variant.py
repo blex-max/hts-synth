@@ -27,10 +27,6 @@ from .enums import VariantType
 from .utils import get_end
 
 
-# TODO: drop when frozen dataclasses with slots are fixed in CPython
-# VariantTuple = tuple[int, DnaStr, DnaStr]
-
-
 def _raise_no_ref_alt() -> NoReturn:
     raise ValueError("Invalid variant: both REF and ALT are null!")
 
