@@ -1,21 +1,25 @@
-
 import random
 import string
+
 from faker.providers import BaseProvider
 
+
 class Read:
-    #TODO: Replace with actual read class once implemented
+    # TODO: Replace with actual read class once implemented
     sequence: str
     quality_string: str
+
     def __init__(self, sequence: str, quality_string: str):
         self.sequence = sequence
         self.quality_string = quality_string
 
+
 def generate_read(length=10):
     # TODO: Replace with actual read generation method once implemented
-    seq = ''.join(random.choices('ACGT', k=length))
-    qual = ''.join(random.choices(string.ascii_letters, k=length))
+    seq = "".join(random.choices("ACGT", k=length))
+    qual = "".join(random.choices(string.ascii_letters, k=length))
     return Read(seq, qual)
+
 
 class ReadProvider(BaseProvider):
     """
@@ -34,5 +38,5 @@ class ReadProvider(BaseProvider):
         'ACGTACGTAC'
     """
 
-    def read(self, length:int =10) -> Read:
+    def read(self, length: int = 10) -> Read:
         return generate_read(length=length)
