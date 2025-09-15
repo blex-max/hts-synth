@@ -61,4 +61,4 @@ convention = "pep257"
 "**/*/__init__.py" = ["D"]
 
 [tool.pyright]
-exclude = ["scratch-api.py"]
+ignore = ["scratch-api.py"]
