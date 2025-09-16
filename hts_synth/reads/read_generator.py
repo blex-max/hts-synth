@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, Iterator, Optional
+from typing import Dict, Iterable, Iterator
 
 import pysam
 from pysam import AlignedSegment
@@ -8,9 +8,7 @@ from ..ref.generate_variant import VariantGenerator
 
 
 class QualityModel:
-    """
-    Placeholder class for the quality model Alex was working on.
-    """
+    """Placeholder class for the quality model Alex was working on."""
 
     def get_quality_scores(self, length: int) -> Iterable[int]:
         """
@@ -40,7 +38,7 @@ class ReadGenerator:
     def __init__(
         self,
         quality_model: QualityModel,
-        error_probabilities: Optional[Dict[VariantType, float]] = None,
+        error_probabilities: dict[VariantType, float] | None = None,
     ):
         """
         Initialise a Read Generator with a model for generating quality scores (currently a placeholder) and
@@ -48,7 +46,7 @@ class ReadGenerator:
 
         Args:
             quality_model (QualityModel): object that provides a `quality_string()` function.
-            error_probabilities (Dict): optional dict containing the rate at which errors could occur.
+            error_probabilities (dict): optional dict containing the rate at which errors could occur.
         """
         self.quality_model = quality_model
         if error_probabilities:
@@ -56,7 +54,7 @@ class ReadGenerator:
 
     def generate(self, reference_position: int, reference_sequence: str) -> AlignedSegment:
         """
-        Function to generate a synthetic read by applying mutations based on simulated sequencing errors to
+        Generate a synthetic read by applying mutations based on simulated sequencing errors to
         a section of the reference sequence.
 
         Args:
@@ -97,7 +95,7 @@ class ReadGenerator:
         self, reference_position: int, reference_sequence: str, amount: int = 10
     ) -> Iterator[AlignedSegment]:
         """
-        Function used to generate multiple reads.
+        Generate multiple reads.
 
         Args:
             reference_position (int): The starting position within the reference of the reference sequence.
