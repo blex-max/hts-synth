@@ -6,3 +6,5 @@ hts_synth.egg-info/
 *venv*/
 
 __pycache__/
+.ruff_cache/
+.pytest_cahce/
