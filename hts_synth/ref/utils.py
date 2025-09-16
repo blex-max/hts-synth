@@ -20,8 +20,7 @@
 
 import re
 from dataclasses import fields
-from itertools import groupby
-from typing import Callable, Iterable, TypeVar
+from typing import TypeVar
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
