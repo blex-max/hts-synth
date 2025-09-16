@@ -1,4 +1,4 @@
-from hts_synth.wrappers.sam_wrapper import SamFlag, create_synthetic_read_pair
+from hts_synth.wrappers.sam_wrapper import SamFlag, create_synthetic_read
 
 
 class TestSam:
@@ -7,12 +7,14 @@ class TestSam:
         assert SamFlag.READ_MAPPED_IN_PROPER_PAIR == 0x002
         assert SamFlag.READ_UNMAPPED == 0x004
         assert (
-            SamFlag.READ_UNMAPPED | SamFlag.READ_MAPPED_IN_PROPER_PAIR | SamFlag.READ_PAIRED
+            SamFlag.READ_UNMAPPED
+            | SamFlag.READ_MAPPED_IN_PROPER_PAIR
+            | SamFlag.READ_PAIRED
             == 0x007
         )
 
-    def test_create_synthetic_read_pair(self):
-        read = create_synthetic_read_pair("ACGT", "8AAA", flag=SamFlag.READ_PAIRED)
+    def test_create_synthetic_read(self):
+        read = create_synthetic_read("ACGT", "8AAA", flag=SamFlag.READ_PAIRED)
 
         assert read.query_sequence == "ACGT"
         assert read.query_qualities_str == "8AAA"

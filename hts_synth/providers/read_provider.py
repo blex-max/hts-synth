@@ -4,7 +4,7 @@ import string
 from faker.providers import BaseProvider
 from pysam import AlignedSegment
 
-from hts_synth.wrappers.sam_wrapper import create_synthetic_read_pair
+from hts_synth.wrappers.sam_wrapper import create_synthetic_read
 
 
 def generate_read(length=10):
@@ -12,7 +12,7 @@ def generate_read(length=10):
     seq = "".join(random.choices("ACGT", k=length))
     qual = "".join(random.choices(string.ascii_letters, k=length))
 
-    return create_synthetic_read_pair(seq, qual)
+    return create_synthetic_read(seq, qual)
 
 
 class ReadProvider(BaseProvider):
