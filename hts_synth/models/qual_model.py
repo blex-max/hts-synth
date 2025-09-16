@@ -1,16 +1,16 @@
 from array import array
-from typing import Any
 from collections.abc import Sequence
+from typing import Any
+
 import numpy as np
-from hts_synth.utils.online_mean import WelfordsRunningMean
 import pysam
 
+from hts_synth.utils.online_mean import WelfordsRunningMean
 
-def refine_quals(
-    query_qualities: Sequence[int] | array[Any] | None
-) -> list[int] | None:
+
+def refine_quals(query_qualities: Sequence[int] | array[Any] | None) -> list[int] | None:
     """
-    helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None
+    Helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None
 
     Args:
         query_qualities (Sequence[int] | array[Any] | None): unprocessed qualities (probably from a pysam method)
@@ -24,13 +24,14 @@ def refine_quals(
     return list(retq)
 
 
-class NaiveQualModelBase: pass
+class NaiveQualModelBase:
+    pass
 
 
 class NaiveQualSim(NaiveQualModelBase):
     """
     A naive model of base quality which can simulate quality arrays based on input per-position normal distributions.
-    
+
     - assumes positions are entirely independent
     - has no sense of genomic position
     - is totally independent of bases/other features
@@ -44,15 +45,12 @@ class NaiveQualSim(NaiveQualModelBase):
         means (list[float]): Model parameter, distribution means of quality by position
         sds (list[float]): Model paramter, distribution of standard deviations of quality by position
     """
+
     means: list[float]
     sds: list[float]
     _rng: np.random.Generator
 
-    def __init__(
-            self,
-            distribution_by_posn: list[tuple[float, float]],
-            rng: np.random.Generator
-    ):
+    def __init__(self, distribution_by_posn: list[tuple[float, float]], rng: np.random.Generator):
         """
         Args:
             distribution_by_posn (list[tuple[float, float]]): The model from which the object will simulate quality. Tuples of mean and standard deviation up to desired read length
@@ -63,17 +61,14 @@ class NaiveQualSim(NaiveQualModelBase):
         self._rng = rng
 
     def _yield_result(
-            self,
+        self,
     ) -> list[int]:
         sampled_quals = list(map(lambda x: int(self._rng.normal(*x)), zip(self.means, self.sds)))
         return sampled_quals
 
-    def yield_n(
-        self,
-        n: int
-    ):
+    def yield_n(self, n: int):
         """
-        return n simulated quality arrays
+        Return n simulated quality arrays
 
         Args:
             n (int): total number of results to return
@@ -90,13 +85,11 @@ class NaiveQualLearner(NaiveQualModelBase):
         online_means (list[WelfordsRunningMean]): online learner for each position
         nobs (int): number of observations
     """
+
     online_means: list[WelfordsRunningMean]
     nobs: int
 
-    def __init__(
-        self,
-        initial_qualities: list[int]
-    ) -> None:
+    def __init__(self, initial_qualities: list[int]) -> None:
         """
         Args:
             initial_qualities (list[int]): the first observation from data, with which to prime the learner instance (i.e. start the online means)
@@ -104,12 +97,9 @@ class NaiveQualLearner(NaiveQualModelBase):
         self.online_means = [WelfordsRunningMean(q) for q in initial_qualities]
         self.nobs = 1
 
-    def update(
-        self,
-        new_quals: list[int]
-    ):
+    def update(self, new_quals: list[int]):
         """
-        update the online means for each position
+        Update the online means for each position
 
         Args:
             new_quals (list[int]): quality scores of the new observation
@@ -118,14 +108,12 @@ class NaiveQualLearner(NaiveQualModelBase):
             rm.update(val)
         self.nobs += 1
 
-    def yield_model(
-        self
-    ):
+    def yield_model(self):
         """
-        return distribution model of quality score for each position as learned so far
+        Return distribution model of quality score for each position as learned so far
         """
         if self.nobs < 3:
-            raise RuntimeError('too few observations to return model')
+            raise RuntimeError("too few observations to return model")
 
         model: list[tuple[float, float]] = []
         for rm in self.online_means:
@@ -139,7 +127,7 @@ class NaiveQualLearner(NaiveQualModelBase):
         fq: pysam.FastxFile,
     ):
         """
-        from a fastq file handle as opened by pysam, learn a model from that data
+        From a fastq file handle as opened by pysam, learn a model from that data
 
         Args:
             fq (pysam.FastxFile): Open pysam file handle to fastq

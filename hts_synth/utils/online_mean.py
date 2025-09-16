@@ -1,5 +1,6 @@
 import math
 
+
 class WelfordsRunningMean:
     """
     Quick implementation of Welford's online mean algorithm
@@ -7,22 +8,17 @@ class WelfordsRunningMean:
     Attributes:
         agg (tuple[int, float, float]): aggregate containing the total number of observations, and the accumulated mean and squared distance from the mean from those observations (m2)
     """
+
     agg: tuple[int, float, float]
 
-    def __init__(
-        self,
-        init_val: int | float
-    ):
+    def __init__(self, init_val: int | float):
         """
         Args:
             init_val (int | float): the value of the first observation, to initialise the online mean with
         """
         self.agg = (1, init_val, 0)
 
-    def update(
-        self,
-        new_value: int
-    ) -> None:
+    def update(self, new_value: int) -> None:
         """
         For a new observation, use the current aggregate (counts, mean, m2)
         to calculate the new count, mean, new m2.
@@ -39,21 +35,18 @@ class WelfordsRunningMean:
         set the mean, variance and sample variance from an aggregate to the .finalised_mean
         """
 
-    def yield_moments(
-        self,
-        population: bool = False
-    ):
+    def yield_moments(self, population: bool = False):
         """
-        return finalised running mean with either the sample or the popluation standard deviation
+        Return finalised running mean with either the sample or the popluation standard deviation
 
         Args:
             population (bool): whether to return the sample or population sample deviaition
         """
         (count, mean, m2) = self.agg
         if count < 2:
-            raise RuntimeError('Insufficient observations to finalise')
+            raise RuntimeError("Insufficient observations to finalise")
         if population:
-            sd = math.sqrt( m2 / count )
+            sd = math.sqrt(m2 / count)
         else:
-            sd = math.sqrt( m2 / (count - 1) )
+            sd = math.sqrt(m2 / (count - 1))
         return mean, sd
