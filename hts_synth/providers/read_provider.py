@@ -7,7 +7,7 @@ from pysam import AlignedSegment
 from hts_synth.wrappers.sam_wrapper import create_synthetic_read
 
 
-def generate_read(length:int =10) -> AlignedSegment:
+def generate_read(length: int = 10) -> AlignedSegment:
     # TODO: Replace with actual read generation method once implemented
     seq = "".join(random.choices("ACGT", k=length))
     qual = "".join(random.choices(string.ascii_letters, k=length))
