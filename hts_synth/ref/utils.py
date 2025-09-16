@@ -21,11 +21,11 @@
 import re
 from dataclasses import fields
 from itertools import groupby
-from typing import Callable, Iterable
+from typing import Callable, Iterable, TypeVar
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
-
+R = TypeVar("R")
 
 def is_dna(s: str) -> bool:
     return dna_re.match(s) is not None
@@ -40,7 +40,7 @@ def parse_opt_int_group(m: re.Match[str], i: int) -> int:
     return int(g) if g else 0
 
 
-def safe_group_by(a: Iterable[str], k: Callable):
+def safe_group_by(a: Iterable[str], k: Callable[[], R]):
     return groupby(sorted(a, key=k), key=k)
 
 
