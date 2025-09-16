@@ -1,7 +1,6 @@
 from array import array
 from collections.abc import Sequence
 from typing import Any
-
 import numpy as np
 import pysam
 
@@ -52,7 +51,12 @@ class NaiveQualSim(NaiveQualModelBase):
     sds: list[float]
     _rng: np.random.Generator
 
-    def __init__(self, distribution_by_posn: list[tuple[float, float]], rng: np.random.Generator):
+    def __init__(
+        self,
+        distribution_by_posn: list[tuple[float, float]],
+        rng: np.random.Generator | None = None,  # default None will instantiate an unseeded generator for you
+        default_seed: int = 24601
+    ):
         """
         Initialise object.
         
@@ -62,7 +66,10 @@ class NaiveQualSim(NaiveQualModelBase):
         """
         self.means = [x[0] for x in distribution_by_posn]
         self.sds = [x[1] for x in distribution_by_posn]
-        self._rng = rng
+        if rng is not None:
+            self._rng = rng
+        else:
+            self._rng = np.random.default_rng(default_seed)
 
     def _yield_result(
         self,
