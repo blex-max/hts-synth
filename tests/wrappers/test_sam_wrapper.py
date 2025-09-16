@@ -7,9 +7,7 @@ class TestSam:
         assert SamFlag.READ_MAPPED_IN_PROPER_PAIR == 0x002
         assert SamFlag.READ_UNMAPPED == 0x004
         assert (
-            SamFlag.READ_UNMAPPED
-            | SamFlag.READ_MAPPED_IN_PROPER_PAIR
-            | SamFlag.READ_PAIRED
+            SamFlag.READ_UNMAPPED | SamFlag.READ_MAPPED_IN_PROPER_PAIR | SamFlag.READ_PAIRED
             == 0x007
         )
 
