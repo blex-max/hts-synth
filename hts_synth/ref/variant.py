@@ -1,23 +1,3 @@
-########## LICENCE ##########
-# VaLiAnT
-# Copyright (C) 2020, 2021, 2022, 2023, 2024 Genome Research Ltd
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#############################
-
-# Modified 2025
-
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
@@ -29,7 +9,6 @@ from .utils import get_end
 
 def _raise_no_ref_alt() -> NoReturn:
     raise ValueError("Invalid variant: both REF and ALT are null!")
-
 
 @dataclass(slots=True)
 class Variant:
@@ -71,6 +50,7 @@ class Variant:
                 VariantType.SUBSTITUTION if self.alt else
                 VariantType.DELETION
             )
+
         if self.alt:
             return VariantType.INSERTION
         _raise_no_ref_alt()
@@ -81,15 +61,14 @@ class Variant:
 
     @classmethod
     def get_del(cls, start: int, ref: str) -> Variant:
-        """Create a deletion"""
+        """Create a deletion."""
 
         return cls(start, ref, '')
 
     @classmethod
     def get_ins(cls, start: int, alt: str) -> Variant:
-        """Create an insertion"""
-
-        return cls(start, '', alt)
+        """Create an insertion."""
+        return cls(start, "", alt)
 
     def clone(self, pos: int | None = None):
         return replace(self, pos=pos if pos is not None else self.pos)

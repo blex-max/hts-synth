@@ -1,29 +1,14 @@
-########## LICENCE ##########
-# VaLiAnT
-# Copyright (C) 2024 Genome Research Ltd
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#############################
 import re
+
 # Modified 2025
+from collections.abc import Sequence
 
-from typing import Sequence
-
-from variant import Variant
+from ..ref.variant import Variant
 
 
-def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]) -> str:
+def apply_variants(
+    ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]
+) -> str:
     """
     Alter a DNA sequence based on a set of variants
 
@@ -52,7 +37,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
     v: Variant = variants[k]
 
     if v.pos > ref_start:
-
         # Copy the head of the reference sequence unaffected by variants
         delta = v.pos - ref_start
         alt_seq[:delta] = ref[:delta].encode('ascii')
@@ -63,7 +47,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
     while i < ref_length:
         ref_pos = ref_start + i
         if v and v.pos == ref_pos:
-
             # Apply variant
             for c in v.alt:
                 alt_seq[j] = ord(c)
@@ -74,7 +57,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
 
             k += 1
             if k < n:
-
                 # Step to the next variant
                 v = variants[k]
 
@@ -82,7 +64,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
                 break
 
         else:
-
             # Copy REF base
             alt_seq[j] = ord(ref[i])
 
@@ -90,7 +71,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
             j += 1
 
     if i < ref_length:
-
         # Copy the tail of the reference sequence unaffected by variants
         alt_seq[j:] = ref[i:].encode('ascii')
 

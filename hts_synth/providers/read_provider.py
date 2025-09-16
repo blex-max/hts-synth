@@ -1,0 +1,33 @@
+import random
+import string
+
+from faker.providers import BaseProvider
+from pysam import AlignedSegment
+
+from ..reads.read_generator import ReadGenerator, QualityModel
+from typing import Optional, Dict
+from ..ref.enums import VariantType
+
+
+class ReadProvider(BaseProvider):
+    """
+    Custom Faker provider that generates synthetic reads.
+
+    Example:
+        >>> from faker import Faker
+        >>> fake = Faker()
+        >>> fake.add_provider(ReadProvider)
+        >>> read = fake.read()
+        >>> print(read.sequence)
+        'ACGTACGTAC'
+    """
+
+    def read(
+            self, 
+            reference_position: int = 100, 
+            reference_sequence: str = 'ATGCTGTG', 
+            error_probabilities: Optional[Dict[VariantType, float]] = None
+        ) -> AlignedSegment:
+        quality_model = QualityModel()
+        generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
+        return generator.generate(reference_position, reference_sequence)

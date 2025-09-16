@@ -1,51 +1,28 @@
-########## LICENCE ##########
-# VaLiAnT
-# Copyright (C) 2020, 2021, 2022, 2023, 2024 Genome Research Ltd
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#############################
-
-# Modified 2025
-
-from dataclasses import fields
-from itertools import groupby
 import re
-from typing import Callable, Iterable
+from dataclasses import fields
+from typing import TypeVar, Iterable, Callable
+
+from itertools import groupby
 
 
-dna_re = re.compile('^[ACGT]*$')
-dna_complement_tr_table = str.maketrans('ACGT', 'TGCA')
-
+dna_re = re.compile("^[ACGT]*$")
+dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
+R = TypeVar("R")
 
 def is_dna(s: str) -> bool:
     return dna_re.match(s) is not None
 
-
 def reverse_complement(seq: str) -> str:
     return seq[::-1].translate(dna_complement_tr_table)
 
-
-def parse_opt_int_group(m: re.Match, i: int) -> int:
+def parse_opt_int_group(m: re.Match[str], i: int) -> int:
     g = m.group(i)
     return int(g) if g else 0
-
 
 def safe_group_by(a: Iterable, k: Callable):
     return groupby(sorted(a, key=k), key=k)
 
-
-def has_duplicates(items: list) -> bool:
+def has_duplicates(items: list[str]) -> bool:
     return len(set(items)) != len(items)
 
 
@@ -78,12 +55,11 @@ def get_cds_ext_3_length(frame: int, length: int) -> int:
     Calculate how many nucleotides are missing from the last codon
     given the reading frame and the length of the sequence
     """
-
     return (3 - (length + frame) % 3) % 3
 
 
 def bool_to_int_str(x: bool) -> str:
-    return '1' if x else '0'
+    return "1" if x else "0"
 
 
 def clamp_non_negative(n: int) -> int:
@@ -92,7 +68,6 @@ def clamp_non_negative(n: int) -> int:
 
 def get_end(start: int, length: int) -> int:
     """Get inclusive end position given start and length"""
-
     return start + clamp_non_negative(length - 1)
 
 
