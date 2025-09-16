@@ -16,6 +16,7 @@ license = "MIT"
 readme = "README.md"
 dependencies = [
   "pysam>=0.22, ==0.*",
+  "numpy"
 ]
 requires-python = ">= 3.12"
 
