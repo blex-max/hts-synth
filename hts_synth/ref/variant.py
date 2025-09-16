@@ -10,6 +10,7 @@ from .utils import get_end
 def _raise_no_ref_alt() -> NoReturn:
     raise ValueError("Invalid variant: both REF and ALT are null!")
 
+
 @dataclass(slots=True)
 class Variant:
     pos: int
@@ -18,9 +19,11 @@ class Variant:
 
     def __str__(self) -> str:
         return (
-            f"{self.pos}del{self.ref}" if not self.alt else
-            f"{self.pos}ins{self.alt}" if not self.ref else
-            f"{self.pos}{self.ref}>{self.alt}"
+            f"{self.pos}del{self.ref}"
+            if not self.alt
+            else f"{self.pos}ins{self.alt}"
+            if not self.ref
+            else f"{self.pos}{self.ref}>{self.alt}"
         )
 
     def __post_init__(self) -> None:
@@ -46,10 +49,7 @@ class Variant:
     @property
     def type(self) -> VariantType:
         if self.ref:
-            return (
-                VariantType.SUBSTITUTION if self.alt else
-                VariantType.DELETION
-            )
+            return VariantType.SUBSTITUTION if self.alt else VariantType.DELETION
 
         if self.alt:
             return VariantType.INSERTION
@@ -62,8 +62,7 @@ class Variant:
     @classmethod
     def get_del(cls, start: int, ref: str) -> Variant:
         """Create a deletion."""
-
-        return cls(start, ref, '')
+        return cls(start, ref, "")
 
     @classmethod
     def get_ins(cls, start: int, alt: str) -> Variant:

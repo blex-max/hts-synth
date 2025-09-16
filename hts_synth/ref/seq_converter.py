@@ -17,7 +17,6 @@ def apply_variants(
     - variants do not overlap with each other
     - variants are sorted by position
     """
-
     if not variants:
         return ref_seq
 
@@ -39,7 +38,7 @@ def apply_variants(
     if v.pos > ref_start:
         # Copy the head of the reference sequence unaffected by variants
         delta = v.pos - ref_start
-        alt_seq[:delta] = ref[:delta].encode('ascii')
+        alt_seq[:delta] = ref[:delta].encode("ascii")
 
         i = delta
         j = delta
@@ -72,6 +71,6 @@ def apply_variants(
 
     if i < ref_length:
         # Copy the tail of the reference sequence unaffected by variants
-        alt_seq[j:] = ref[i:].encode('ascii')
+        alt_seq[j:] = ref[i:].encode("ascii")
 
-    return re.sub(r'[^ACGT]', '', alt_seq.decode('ascii'))
+    return re.sub(r"[^ACGT]", "", alt_seq.decode("ascii"))
