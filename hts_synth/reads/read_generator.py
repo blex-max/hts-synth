@@ -77,7 +77,7 @@ class ReadGenerator:
         )
         print(self.quality_model.get_quality_scores(len(read.query_sequence)))
         read.query_qualities_str = pysam.qualities_to_qualitystring(
-            qualities=self.quality_model.get_quality_scores(len(read.query_sequence))#pyright: ignore[reportArgumentType]
+            qualities=self.quality_model.get_quality_scores(len(read.query_sequence))  # pyright: ignore[reportArgumentType]
         )
 
         # TODO actually generate read properties - meaningful name and correct flag
