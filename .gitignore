@@ -4,3 +4,4 @@ hts_synth.egg-info/
 
 # Virtual environment
 *venv*/
+docs/build/*
