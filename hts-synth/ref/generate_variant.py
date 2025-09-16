@@ -29,12 +29,14 @@ class VariantGenerator():
         alt_length = ref_length + (num_insertions - num_deletions)
         total_length = max(ref_length, alt_length)
         num_events = num_insertions + num_deletions + num_substitutions
-
+        np.random.seed(0)
         event_indices = list(np.random.permutation(total_length)[:num_events])
-
+        print(event_indices)
+        # [3, 2, 0, 4]
         variant_sequence = []
         for i in range(total_length):
             ref, alt = self.get_ref_alt(i, event_indices, num_insertions, num_deletions)
+
             variant = Variant(pos=i, ref=ref, alt=alt)
             variant_sequence.append(variant)
 
@@ -44,10 +46,10 @@ class VariantGenerator():
         if index in event_indices:
             if event_indices.index(index) < num_insertions:
                 self.ref_offset -= 1
-                return None, random.choice(self.bases)
+                return "", random.choice(self.bases)
             elif event_indices.index(index) < num_insertions + num_deletions:
                 ref_value = self.ref_sequence[index + self.ref_offset]
-                return ref_value, None
+                return ref_value, ""
             else:
                 return self.ref_sequence[index + self.ref_offset], random.choice(self.bases)
         else:

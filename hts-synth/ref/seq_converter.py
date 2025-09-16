@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #############################
-
+import re
 # Modified 2025
 
 from typing import Sequence
 
-from .variant import Variant
+from variant import Variant
 
 
 def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]) -> str:
@@ -94,4 +94,4 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
         # Copy the tail of the reference sequence unaffected by variants
         alt_seq[j:] = ref[i:].encode('ascii')
 
-    return alt_seq.decode('ascii')
+    return re.sub(r'[^ACGT]', '', alt_seq.decode('ascii'))
