@@ -1,7 +1,7 @@
 import re
 from dataclasses import fields
 from itertools import groupby
-from typing import Callable, Iterable, TypeVar
+from typing import Callable, Iterable, TypeVar, Any
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
@@ -21,7 +21,7 @@ def parse_opt_int_group(m: re.Match[str], i: int) -> int:
     return int(g) if g else 0
 
 
-def safe_group_by(a: Iterable, k: Callable):
+def safe_group_by(a: Iterable[Any], k: Callable[[Any], int]):
     return groupby(sorted(a, key=k), key=k)
 
 
@@ -74,7 +74,7 @@ def get_end(start: int, length: int) -> int:
     return start + clamp_non_negative(length - 1)
 
 
-def is_unique_ascending(a: list) -> bool:
+def is_unique_ascending(a: list[Any]) -> bool:
     n = len(a)
     if n == 0:
         return True
