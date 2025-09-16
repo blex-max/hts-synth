@@ -52,7 +52,6 @@ class VariantGenerator:
             else:
                 substitution_choices = self.bases
                 substitution_choices.remove(self.sequence[index + self.ref_offset])
-                print(substitution_choices, self.sequence[index + self.ref_offset])
                 return self.sequence[index + self.ref_offset], random.choice(substitution_choices)
         else:
             return self.sequence[index + self.ref_offset], self.sequence[index + self.ref_offset]
