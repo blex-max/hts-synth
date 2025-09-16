@@ -9,5 +9,5 @@ def cli(length: int):
     """Synthesise a HTS read."""
     # TODO: Replace with actual read generation method once implemented
     read = generate_read(length=length)
-    click.echo(read.sequence)
-    click.echo(read.quality_string)
+    click.echo(read.query_sequence)
+    click.echo(read.query_qualities_str)
