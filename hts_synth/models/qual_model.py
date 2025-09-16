@@ -1,21 +1,19 @@
 from array import array
-import math
-from typing import Protocol, runtime_checkable, Any
+from typing import Any
 from collections.abc import Sequence
 import numpy as np
+from hts_synth.utils.online_mean import WelfordsRunningMean
 import pysam
-
-
-@runtime_checkable
-class HasQualArrayProtocol(Protocol):
-    query_qualities: Sequence[int] | array[Any] | None
 
 
 def refine_quals(
     query_qualities: Sequence[int] | array[Any] | None
 ) -> list[int] | None:
     """
-    helper to minimise the pain of pysam types with qualities
+    helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None
+
+    Args:
+        query_qualities (Sequence[int] | array[Any] | None): unprocessed qualities (probably from a pysam method)
     """
     if query_qualities is None:
         return None
@@ -26,117 +24,142 @@ def refine_quals(
     return list(retq)
 
 
-class NaiveQualModel:
+class NaiveQualModelBase: pass
+
+
+class NaiveQualSim(NaiveQualModelBase):
+    """
+    A naive model of base quality which can simulate quality arrays based on input per-position normal distributions.
+    
+    - assumes positions are entirely independent
+    - has no sense of genomic position
+    - is totally independent of bases/other features
+    For each position the model simply samples a score from a normal distribution with the provided mean and (sample) SD.
+    Read length is implicit to the length of the model parameters provided at init.
+
+    The class also contains an online learning algorithm to learn parameters from an input pysam.FastxFile (fastq).
+    The algorithm uses Welford's Running Mean so as to be reasonably efficient.
+
+    Attributes:
+        means (list[float]): Model parameter, distribution means of quality by position
+        sds (list[float]): Model paramter, distribution of standard deviations of quality by position
+    """
     means: list[float]
     sds: list[float]
+    _rng: np.random.Generator
 
     def __init__(
             self,
-            distribution_by_posn: list[tuple[float, float]]
+            distribution_by_posn: list[tuple[float, float]],
+            rng: np.random.Generator
     ):
+        """
+        Args:
+            distribution_by_posn (list[tuple[float, float]]): The model from which the object will simulate quality. Tuples of mean and standard deviation up to desired read length
+            rng (numpy.random.Generator): Random number generator that the object should use during simulation, usually provided via numpy.random.default_rng()
+        """
         self.means = [x[0] for x in distribution_by_posn]
         self.sds = [x[1] for x in distribution_by_posn]
+        self._rng = rng
 
-    def get_quality_scores(
+    def _yield_result(
             self,
-            rng: np.random.Generator
     ) -> list[int]:
-        sampled_quals = list(map(lambda x: int(rng.normal(*x)), zip(self.means, self.sds)))
-            # NEAT: make sure score is in range and an int
-            # alex: it bothers me that the modelled data would ever produce something outside that range
-            # score = round(score)
-            # if score > 42:
-            #     score = 42
-            # if score < 1:
-            #     score = 1
+        sampled_quals = list(map(lambda x: int(self._rng.normal(*x)), zip(self.means, self.sds)))
         return sampled_quals
 
-    @staticmethod
-    def learn_quality_probabilities(
+    def yield_n(
+        self,
+        n: int
+    ):
+        """
+        return n simulated quality arrays
+
+        Args:
+            n (int): total number of results to return
+        """
+        for _ in range(n):
+            yield self._yield_result()
+
+
+class NaiveQualLearner(NaiveQualModelBase):
+    """
+    Online learning algorithm for building model parameters from real data, from which NaiveQualSim can then simulate data
+
+    Attributes:
+        online_means (list[WelfordsRunningMean]): online learner for each position
+        nobs (int): number of observations
+    """
+    online_means: list[WelfordsRunningMean]
+    nobs: int
+
+    def __init__(
+        self,
+        initial_qualities: list[int]
+    ) -> None:
+        """
+        Args:
+            initial_qualities (list[int]): the first observation from data, with which to prime the learner instance (i.e. start the online means)
+        """
+        self.online_means = [WelfordsRunningMean(q) for q in initial_qualities]
+        self.nobs = 1
+
+    def update(
+        self,
+        new_quals: list[int]
+    ):
+        """
+        update the online means for each position
+
+        Args:
+            new_quals (list[int]): quality scores of the new observation
+        """
+        for rm, val in zip(self.online_means, new_quals):  # zip exhausts on shortest iterable
+            rm.update(val)
+        self.nobs += 1
+
+    def yield_model(
+        self
+    ):
+        """
+        return distribution model of quality score for each position as learned so far
+        """
+        if self.nobs < 3:
+            raise RuntimeError('too few observations to return model')
+
+        model: list[tuple[float, float]] = []
+        for rm in self.online_means:
+            model.append(rm.yield_moments())
+
+        return model
+
+    @classmethod
+    def model_from_fastq(
+        cls,
         fq: pysam.FastxFile,
     ):
+        """
+        from a fastq file handle as opened by pysam, learn a model from that data
+
+        Args:
+            fq (pysam.FastxFile): Open pysam file handle to fastq
+        """
         # ASSUMPTION: No length variance in reads input
         # NOTE: zip is really useful here since it exhausts on the shortest iterable
         # which means we can very quietly deal with slightly short sequences
         # TODO: Add entry if we find a longer read than we expected
         rinit = next(fq)
         # breakpoint()
-        init_quals = refine_quals(rinit.get_quality_array())
+        init_quals = refine_quals(rinit.get_quality_array())  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
         if init_quals is None:
             raise ValueError
-        means = [WelfordsRunningMean(q) for q in init_quals]
-        total_count = 1  # convenient
-        distrib_by_pos: list[tuple[float, float]] = []
+
+        learner = cls(init_quals)
+
         for read in fq:
-            total_count += 1
-            quals = refine_quals(read.get_quality_array())
+            quals = refine_quals(read.get_quality_array())  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
             if quals is None:
                 raise ValueError
-            for rm, val in zip(means, quals):
-                rm.update(val)
+            learner.update(quals)
         else:
-            if total_count < 3:
-                raise RuntimeError('iterator was too short!')
-            for rm in means:
-                rm.finalise()
-                distrib_by_pos.append(rm.mean_and_sd)
-
-        return distrib_by_pos
-
-
-class WelfordsRunningMean:
-    agg: tuple[int, float, float]
-    finalised_mean: tuple[float, float, float] | None
-
-    def __init__(
-        self,
-        init_val: int | float
-    ):
-        self.agg = (1, init_val, 0)
-        self.finalised_mean = None
-
-    # For a new value new_value, compute the new count, new mean, the new M2.
-    # mean accumulates the mean of the entire dataset
-    # M2 aggregates the squared distance from the mean
-    # count aggregates the number of samples seen so far
-    def update(
-        self,
-        new_value: int
-    ) -> None:
-        (count, mean, m2) = self.agg
-        count += 1
-        delta = new_value - mean
-        mean += delta / count
-        delta2 = new_value - mean
-        m2 += delta * delta2
-        self.agg = (count, mean, m2)
-
-    # Retrieve the mean, variance and sample variance from an aggregate
-    def finalise(
-        self,
-    ):
-        (count, mean, M2) = self.agg
-        if count < 2:
-            raise RuntimeError('Insufficient observations to finalise')
-        else:
-            (mean, variance, sample_variance) = (mean, M2 / count, M2 / (count - 1))
-            self.finalised_mean = (mean, variance, sample_variance)
-
-    @property
-    def mean_and_sd(
-        self,
-        population: bool = False
-    ):
-        """
-        return finalised running mean with either the sample or the popluation standard deviation
-        """
-        if self.finalised_mean is None:
-            raise RuntimeError('Aggregate has not been finalised')
-        mean, variance, sample_variance = self.finalised_mean
-        if population:
-            sd = math.sqrt(variance)
-        else:
-            sd = math.sqrt(sample_variance)
-        return mean, sd
-
-    
+            return learner.yield_model()

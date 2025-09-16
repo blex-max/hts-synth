@@ -8,3 +8,4 @@ hts_synth.egg-info/
 # Python
 __pycache__/
 *.py[cod]
+scratch-data/
