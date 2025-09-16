@@ -1,6 +1,8 @@
-from click.testing import CliRunner
-from hts_synth.hts_synth import cli
 import random
+
+from click.testing import CliRunner
+
+from hts_synth.hts_synth import cli
 
 
 def test_hello_world(monkeypatch):
