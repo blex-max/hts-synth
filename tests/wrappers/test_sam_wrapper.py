@@ -1,4 +1,4 @@
-from hts_synth.wrappers.sam import SamFlag, create_synthetic_read_pair
+from hts_synth.wrappers.sam_wrapper import SamFlag, create_synthetic_read_pair
 
 
 class TestSam:

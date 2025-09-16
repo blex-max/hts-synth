@@ -2,7 +2,7 @@ import random
 import string
 
 from faker.providers import BaseProvider
-from hts_synth.wrappers.sam import create_synthetic_read_pair
+from hts_synth.wrappers.sam_wrapper import create_synthetic_read_pair
 from pysam import AlignedSegment
 
 

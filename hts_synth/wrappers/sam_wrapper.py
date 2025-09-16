@@ -40,6 +40,7 @@ def create_synthetic_read_pair(
     read.query_qualities_str = qualities
     read.flag = flag
 
+    # TODO: update these with appropriate values
     read.query_name = "synthetic_read/1"
     read.reference_id = 0
     read.reference_start = 100
