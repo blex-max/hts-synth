@@ -61,6 +61,7 @@ convention = "pep257"
 "**/*/__init__.py" = ["D"]
 
 [tool.pyright]
+failOnWarnings = false
 ignore = ["scratch-api.py"]
 reportAny = false
 reportExplicitAny = false

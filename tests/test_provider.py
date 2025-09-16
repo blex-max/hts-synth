@@ -1,7 +1,14 @@
+from pysam import AlignedSegment
+
+
 class TestRead:
     def test_read(self, faker):
-        read = faker.read(10)
-        assert read
-        assert len(read.query_sequence) == 10
-        read2 = faker.read(5)
-        assert len(read2.query_sequence) == 5
+        read: AlignedSegment = faker.read(10)
+        sequence = read.query_sequence
+        assert sequence is not None
+        assert len(sequence) == 10
+
+        read2: AlignedSegment = faker.read(5)
+        sequence2 = read2.query_sequence
+        assert sequence2 is not None
+        assert len(sequence2) == 5
