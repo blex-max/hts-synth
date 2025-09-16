@@ -7,7 +7,8 @@ Biodev Hackathon 2025 - constrained generation of HTS data for testing and explo
 ### Requirements
 
 - Python 3.12+
-- Pyenv
+- Pyenv (optional)
+- [Pysam](https://github.com/pysam-developers/pysam)
 
 ### Setup
 
@@ -44,3 +45,14 @@ cd docs
 make html
 ```
 Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
+
+
+### Testing
+
+To run unit tests with Pytest
+
+```sh
+python -m pytest
+# or
+pytest .
+```
