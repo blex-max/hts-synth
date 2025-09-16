@@ -29,7 +29,8 @@ klPsyRcqfervojkGHICH
 ### Requirements
 
 - Python 3.12+
-- Pyenv
+- Pyenv (optional)
+- [Pysam](https://github.com/pysam-developers/pysam)
 
 ### Setup
 
