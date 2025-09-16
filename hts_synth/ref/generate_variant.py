@@ -1,27 +1,27 @@
 import random
 from typing import Sequence
-from ..ref.enums import VariantType
+
 import numpy as np
+
+from ..ref.enums import VariantType
 from ..ref.variant import Variant
 
-class VariantGenerator():
 
+class VariantGenerator:
     def __init__(self, sequence: str, events: Sequence[int]):
         """
-        Generate a synthetic sequence of variants, simulating the contents of a VCF file
+        Generate a synthetic sequence of variants, simulating the contents of a VCF file.
+
         :param sequence: sequence to mutate
         :param events: insertions, deletions, substitutions
         """
-        self.bases = ['A', 'C', 'G', 'T']
+        self.bases = ["A", "C", "G", "T"]
         self.ref_offset = 0
         self.events = events
         self.sequence = sequence
 
-
     def generate_random_variant_sequence(self):
-        """
-        Generate a random variant sequence based on a set of events
-        """
+        """Generate a random variant sequence based on a set of events."""
         ref_length = len(self.sequence)
         num_insertions = self.events[VariantType.INSERTION]
         num_deletions = self.events[VariantType.DELETION]

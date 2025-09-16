@@ -1,5 +1,4 @@
 class TestMutate:
-
     def test_mutate(self, faker):
         mutated_sequence = faker.mutated_sequence(sequence="ACTTGGAAGT", events=[1, 1, 1])
         assert mutated_sequence

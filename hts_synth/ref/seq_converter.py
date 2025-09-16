@@ -16,23 +16,24 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #############################
 import re
-# Modified 2025
 
+# Modified 2025
 from typing import Sequence
 
 from ..ref.variant import Variant
 
 
-def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]) -> str:
+def apply_variants(
+    ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]
+) -> str:
     """
-    Alter a DNA sequence based on a set of variants
+    Alter a DNA sequence based on a set of variants.
 
     Assumptions:
     - variants are fully in range of the reference sequence
     - variants do not overlap with each other
     - variants are sorted by position
     """
-
     if not variants:
         return ref_seq
 
@@ -52,10 +53,9 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
     v: Variant = variants[k]
 
     if v.pos > ref_start:
-
         # Copy the head of the reference sequence unaffected by variants
         delta = v.pos - ref_start
-        alt_seq[:delta] = ref[:delta].encode('ascii')
+        alt_seq[:delta] = ref[:delta].encode("ascii")
 
         i = delta
         j = delta
@@ -63,7 +63,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
     while i < ref_length:
         ref_pos = ref_start + i
         if v and v.pos == ref_pos:
-
             # Apply variant
             for c in v.alt:
                 alt_seq[j] = ord(c)
@@ -74,7 +73,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
 
             k += 1
             if k < n:
-
                 # Step to the next variant
                 v = variants[k]
 
@@ -82,7 +80,6 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
                 break
 
         else:
-
             # Copy REF base
             alt_seq[j] = ord(ref[i])
 
@@ -90,8 +87,7 @@ def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequ
             j += 1
 
     if i < ref_length:
-
         # Copy the tail of the reference sequence unaffected by variants
-        alt_seq[j:] = ref[i:].encode('ascii')
+        alt_seq[j:] = ref[i:].encode("ascii")
 
-    return re.sub(r'[^ACGT]', '', alt_seq.decode('ascii'))
+    return re.sub(r"[^ACGT]", "", alt_seq.decode("ascii"))

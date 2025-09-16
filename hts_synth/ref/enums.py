@@ -18,7 +18,7 @@
 
 # Modified 2025
 
-from enum import Enum, IntEnum
+from enum import IntEnum
 
 
 class VariantType(IntEnum):
