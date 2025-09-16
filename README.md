@@ -36,3 +36,13 @@ Basedpyright for typing
 ```sh
 python -m basedpyright
 ```
+
+### Testing
+
+To run unit tests with Pytest
+
+```sh
+python -m pytest
+# or
+pytest .
+```
