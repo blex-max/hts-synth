@@ -13,7 +13,7 @@ class VariantGenerator:
         Generate a synthetic sequence of variants, simulating the contents of a VCF file.
 
         :param sequence: sequence to mutate
-        :param events: insertions, deletions, substitutions
+        :param events: [insertions, deletions, substitutions]
         """
         self.bases = ["A", "C", "G", "T"]
         self.ref_offset = 0
