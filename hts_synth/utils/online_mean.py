@@ -14,7 +14,7 @@ class WelfordsRunningMean:
     def __init__(self, init_val: int | float):
         """
         Initialise object.
-        
+
         Args:
             init_val (int | float): the value of the first observation, to initialise the online mean with
         """

@@ -55,7 +55,7 @@ class NaiveQualSim(NaiveQualModelBase):
     def __init__(self, distribution_by_posn: list[tuple[float, float]], rng: np.random.Generator):
         """
         Initialise object.
-        
+
         Args:
             distribution_by_posn (list[tuple[float, float]]): The model from which the object will simulate quality. Tuples of mean and standard deviation up to desired read length
             rng (numpy.random.Generator): Random number generator that the object should use during simulation, usually provided via numpy.random.default_rng()
@@ -96,7 +96,7 @@ class NaiveQualLearner(NaiveQualModelBase):
     def __init__(self, initial_qualities: list[int]) -> None:
         """
         Initialise object.
-        
+
         Args:
             initial_qualities (list[int]): the first observation from data, with which to prime the learner instance (i.e. start the online means)
         """
