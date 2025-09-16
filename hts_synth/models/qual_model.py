@@ -55,9 +55,8 @@ class NaiveQualSim(NaiveQualModelBase):
     def __init__(
         self,
         distribution_by_posn: list[tuple[float, float]],
-        rng: np.random.Generator
-        | None = None,  # default None will instantiate an unseeded generator for you
-        default_seed: int = 24601,
+        rng: np.random.Generator | None = None,  # default None will instantiate an unseeded generator for you
+        default_seed: int = 24601
     ):
         """
         Initialise object.
