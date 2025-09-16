@@ -37,21 +37,15 @@ class NaiveQualModel:
         quality scores read from the dataset used to construct the model.
     :param is_uniform: Some machines use uniform quality scores. This makes simulation a little easier.
     """
-    read_len: int
     means: list[float]
     sds: list[float]
 
     def __init__(
             self,
-            quality_score_means: list[float],
-            quality_score_sds: list[float]
+            distribution_by_posn: list[tuple[float, float]]
     ):
-        if not (read_len := len(quality_score_means)) != len(quality_score_sds):
-            raise ValueError("args must be of same len")
-
-        self.read_len = read_len
-        self.means = quality_score_means
-        self.sds = quality_score_sds
+        self.means = [x[0] for x in distribution_by_posn]
+        self.sds = [x[1] for x in distribution_by_posn]
 
     def get_quality_scores(
             self,
