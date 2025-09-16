@@ -4,3 +4,5 @@ hts_synth.egg-info/
 
 # Virtual environment
 *venv*/
+
+__pycache__/
