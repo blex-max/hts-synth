@@ -1,2 +1,3 @@
-ruff
 basedpyright
+matplotlib~==3.10
+ruff
