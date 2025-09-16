@@ -3,12 +3,11 @@ import math
 
 class WelfordsRunningMean:
     """
-    Quick implementation of Welford's online mean algorithm
+    Quick implementation of Welford's online mean algorithm.
 
     Attributes:
         agg (tuple[int, float, float]): aggregate containing the total number of observations, and the accumulated mean and squared distance from the mean from those observations (m2)
     """
-
     agg: tuple[int, float, float]
 
     def __init__(self, init_val: int | float):
@@ -20,8 +19,7 @@ class WelfordsRunningMean:
 
     def update(self, new_value: int) -> None:
         """
-        For a new observation, use the current aggregate (counts, mean, m2)
-        to calculate the new count, mean, new m2.
+        For a new observation, use the current aggregate (counts, mean, m2) to calculate the new count, mean, new m2.
         """
         (count, mean, m2) = self.agg
         count += 1
@@ -31,13 +29,9 @@ class WelfordsRunningMean:
         m2 += delta * delta2
         self.agg = (count, mean, m2)
 
-        """
-        set the mean, variance and sample variance from an aggregate to the .finalised_mean
-        """
-
     def yield_moments(self, population: bool = False):
         """
-        Return finalised running mean with either the sample or the popluation standard deviation
+        Return finalised running mean with either the sample or the popluation standard deviation.
 
         Args:
             population (bool): whether to return the sample or population sample deviaition

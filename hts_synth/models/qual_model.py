@@ -10,7 +10,9 @@ from hts_synth.utils.online_mean import WelfordsRunningMean
 
 def refine_quals(query_qualities: Sequence[int] | array[Any] | None) -> list[int] | None:
     """
-    Helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None
+    Modfiy common iterables of quality scores into a standard list int.
+
+    Mostly a helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None
 
     Args:
         query_qualities (Sequence[int] | array[Any] | None): unprocessed qualities (probably from a pysam method)
@@ -63,12 +65,12 @@ class NaiveQualSim(NaiveQualModelBase):
     def _yield_result(
         self,
     ) -> list[int]:
-        sampled_quals = list(map(lambda x: int(self._rng.normal(*x)), zip(self.means, self.sds)))
+        sampled_quals = [int(self._rng.normal(*x)) for x in zip(self.means, self.sds)]
         return sampled_quals
 
     def yield_n(self, n: int):
         """
-        Return n simulated quality arrays
+        Return n simulated quality arrays.
 
         Args:
             n (int): total number of results to return
@@ -79,7 +81,7 @@ class NaiveQualSim(NaiveQualModelBase):
 
 class NaiveQualLearner(NaiveQualModelBase):
     """
-    Online learning algorithm for building model parameters from real data, from which NaiveQualSim can then simulate data
+    Online learning algorithm for building model parameters from real data, from which NaiveQualSim can then simulate data.
 
     Attributes:
         online_means (list[WelfordsRunningMean]): online learner for each position
@@ -99,7 +101,7 @@ class NaiveQualLearner(NaiveQualModelBase):
 
     def update(self, new_quals: list[int]):
         """
-        Update the online means for each position
+        Update the online means for each position.
 
         Args:
             new_quals (list[int]): quality scores of the new observation
@@ -110,7 +112,7 @@ class NaiveQualLearner(NaiveQualModelBase):
 
     def yield_model(self):
         """
-        Return distribution model of quality score for each position as learned so far
+        Return distribution model of quality score for each position as learned so far.
         """
         if self.nobs < 3:
             raise RuntimeError("too few observations to return model")
@@ -127,7 +129,7 @@ class NaiveQualLearner(NaiveQualModelBase):
         fq: pysam.FastxFile,
     ):
         """
-        From a fastq file handle as opened by pysam, learn a model from that data
+        From a fastq file handle as opened by pysam, learn a model from that data.
 
         Args:
             fq (pysam.FastxFile): Open pysam file handle to fastq
