@@ -8,4 +8,7 @@ hts_synth.egg-info/
 # Python
 __pycache__/
 *.py[cod]
+
+# Data
 scratch-data/
+*.fastq
