@@ -18,7 +18,7 @@
 import re
 
 # Modified 2025
-from typing import Sequence
+from collections.abc import Sequence
 
 from ..ref.variant import Variant
 
