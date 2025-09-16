@@ -27,16 +27,6 @@ def refine_quals(
 
 
 class NaiveQualModel:
-    """
-    This is the traditional NEAT model for generating quality scores. This will be replaced by
-    a Markov model or an optional markov model
-
-    :param transition_matrix: 2x2 matrix that gives the probability of each base transitioning to another.
-    :param quality_scores: numpy array of ints of the PHRED quality scores possible from the sequencing machine
-    :param qual_score_probs: At each position along the read_length, this gives the mean and standard deviation of
-        quality scores read from the dataset used to construct the model.
-    :param is_uniform: Some machines use uniform quality scores. This makes simulation a little easier.
-    """
     means: list[float]
     sds: list[float]
 
@@ -51,14 +41,6 @@ class NaiveQualModel:
             self,
             rng: np.random.Generator
     ) -> list[int]:
-        """
-        Takes a length and rng and returns an array of quality scores
-
-        :param model_read_length: the original read length for the model
-        :param length: The desired length of the quality score array
-        :param rng: random number generator.
-        :return: An array of quality scores.
-        """
         sampled_quals = list(map(lambda x: int(rng.normal(*x)), zip(self.means, self.sds)))
             # NEAT: make sure score is in range and an int
             # alex: it bothers me that the modelled data would ever produce something outside that range
