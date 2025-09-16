@@ -8,10 +8,13 @@ class WelfordsRunningMean:
     Attributes:
         agg (tuple[int, float, float]): aggregate containing the total number of observations, and the accumulated mean and squared distance from the mean from those observations (m2)
     """
+
     agg: tuple[int, float, float]
 
     def __init__(self, init_val: int | float):
         """
+        Initialise object.
+        
         Args:
             init_val (int | float): the value of the first observation, to initialise the online mean with
         """
@@ -19,7 +22,7 @@ class WelfordsRunningMean:
 
     def update(self, new_value: int) -> None:
         """
-        For a new observation, use the current aggregate (counts, mean, m2) to calculate the new count, mean, new m2.
+        For a new observation, use the current aggregate to calculate the new aggregate (counts, mean, m2).
         """
         (count, mean, m2) = self.agg
         count += 1
