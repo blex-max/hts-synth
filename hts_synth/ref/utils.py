@@ -55,8 +55,7 @@ def get_codon_offset_complement(offset: int) -> int:
 
 def get_cds_ext_3_length(frame: int, length: int) -> int:
     """
-    Calculate how many nucleotides are missing from the last codon
-    given the reading frame and the length of the sequence
+    Calculate how many nucleotides are missing from the last codon based on the length of the sequence.
     """
     return (3 - (length + frame) % 3) % 3
 
@@ -70,7 +69,7 @@ def clamp_non_negative(n: int) -> int:
 
 
 def get_end(start: int, length: int) -> int:
-    """Get inclusive end position given start and length"""
+    """Get inclusive end position given start and length."""
     return start + clamp_non_negative(length - 1)
 
 

@@ -10,12 +10,12 @@ def apply_variants(
     ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]
 ) -> str:
     """
-    Alter a DNA sequence based on a set of variants
+    Alter a DNA sequence based on a set of variants.
 
     Assumptions:
-    - variants are fully in range of the reference sequence
-    - variants do not overlap with each other
-    - variants are sorted by position
+    - variants are fully in range of the reference sequence.
+    - variants do not overlap with each other.
+    - variants are sorted by position.
     """
     if not variants:
         return ref_seq
