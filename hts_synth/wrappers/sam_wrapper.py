@@ -25,9 +25,7 @@ class SamFlag(IntFlag):
     SUPPLEMENTARY_ALIGNMENT = 0x800
 
 
-def create_synthetic_read(
-    sequence: str, qualities: str, flag: int = 0
-) -> AlignedSegment:
+def create_synthetic_read(sequence: str, qualities: str, flag: int = 0) -> AlignedSegment:
     """
     Wrap a sequence and qualities into a PySam AlignedSegment.
 

@@ -6,6 +6,7 @@ dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
 R = TypeVar("R")
 
+
 def is_dna(s: str) -> bool:
     return dna_re.match(s) is not None
 
