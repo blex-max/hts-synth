@@ -14,7 +14,7 @@ class Read:
         self.quality_string = quality_string
 
 
-def generate_read(length=10):
+def generate_read(length:int =10) -> Read:
     # TODO: Replace with actual read generation method once implemented
     seq = "".join(random.choices("ACGT", k=length))
     qual = "".join(random.choices(string.ascii_letters, k=length))
