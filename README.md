@@ -23,10 +23,14 @@ The synthesising tool can be used both as a Faker provider for unit tests and as
 ```sh
 $ hts-synth --help
 
-$ hts-synth --length=20                                                                         10:41:52
+$ hts-synth --length=20
 TTCATCTAAAATATATGAAC
 klPsyRcqfervojkGHICH
 ```
+
+## Examples
+
+There are usage examples in ./examples. To successfully run the Jyputer notebook, install development the requirements and acquire a FASTQ file for testing. The one that was tested against contains 25 000 reads, each 100 bps long. See [TESTX_H7YRLADXX_S1_L001_R1_001.fastq](https://github.com/hartwigmedical/testdata/tree/master/100k_reads_hiseq/TESTX).
 
 ## Development
 
@@ -64,14 +68,15 @@ python -m basedpyright
 ```
 
 ### Documentation
+
 To generate the documentation, using Sphinx. Run the following commands:
 
 ```bash
 cd docs
 make html
 ```
-Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
 
+Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
 
 ### Testing
 
