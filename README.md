@@ -63,6 +63,16 @@ Basedpyright for typing
 python -m basedpyright
 ```
 
+### Documentation
+To generate the documentation, using Sphinx. Run the following commands:
+
+```bash
+cd docs
+make html
+```
+Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
+
+
 ### Testing
 
 To run unit tests with Pytest

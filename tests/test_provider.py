@@ -1,8 +1,9 @@
+from faker import Faker
 from pysam import AlignedSegment
 
 
 class TestRead:
-    def test_read(self, faker):
+    def test_read(self, faker: Faker):
         read: AlignedSegment = faker.read(10)
         sequence = read.query_sequence
         assert sequence is not None

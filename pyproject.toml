@@ -26,6 +26,10 @@ dev = [
   "pytest==8.*",
   "pytest-cov==6.*"
 ]
+docs = [
+    "sphinx",
+    "sphinx_rtd_theme"
+]
 
 [project.scripts]
 hts-synth = "hts_synth.hts_synth:cli"
@@ -55,6 +59,7 @@ ignore = [
     "D103", # Missing docstring in public function
     "D105", # Missing docstring in magic method
     "D107", # Missing docstring in __init__
+    "D200", # One-line docstring should fit on one line with quotes
     "D417", # Missing argument descriptions in the docstring
 ]
 
@@ -70,4 +75,8 @@ failOnWarnings = false
 ignore = ["scratch-api.py"]
 reportAny = false
 reportExplicitAny = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownVariableType = false
 reportUnnecessaryIsInstance = false
