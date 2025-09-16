@@ -6,23 +6,23 @@ from ..ref.variant import Variant
 
 class VariantGenerator():
 
-    def __init__(self, ref_sequence: str, events: Sequence[int]):
+    def __init__(self, sequence: str, events: Sequence[int]):
         """
         Generate a synthetic sequence of variants, simulating the contents of a VCF file
-        :param ref_sequence: reference sequence
-        :param events:
+        :param sequence: sequence to mutate
+        :param events: insertions, deletions, substitutions
         """
         self.bases = ['A', 'C', 'G', 'T']
         self.ref_offset = 0
         self.events = events
-        self.ref_sequence = ref_sequence
+        self.sequence = sequence
 
 
     def generate_random_variant_sequence(self):
         """
         Generate a random variant sequence based on a set of events
         """
-        ref_length = len(self.ref_sequence)
+        ref_length = len(self.sequence)
         num_insertions = self.events[VariantType.INSERTION]
         num_deletions = self.events[VariantType.DELETION]
         num_substitutions = self.events[VariantType.SUBSTITUTION]
@@ -47,9 +47,12 @@ class VariantGenerator():
                 self.ref_offset -= 1
                 return "", random.choice(self.bases)
             elif event_indices.index(index) < num_insertions + num_deletions:
-                ref_value = self.ref_sequence[index + self.ref_offset]
+                ref_value = self.sequence[index + self.ref_offset]
                 return ref_value, ""
             else:
-                return self.ref_sequence[index + self.ref_offset], random.choice(self.bases)
+                substitution_choices = self.bases
+                substitution_choices.remove(self.sequence[index + self.ref_offset])
+                print(substitution_choices, self.sequence[index + self.ref_offset])
+                return self.sequence[index + self.ref_offset], random.choice(substitution_choices)
         else:
-            return self.ref_sequence[index + self.ref_offset], self.ref_sequence[index + self.ref_offset]
+            return self.sequence[index + self.ref_offset], self.sequence[index + self.ref_offset]
