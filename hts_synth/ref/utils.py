@@ -35,16 +35,16 @@ def reverse_complement(seq: str) -> str:
     return seq[::-1].translate(dna_complement_tr_table)
 
 
-def parse_opt_int_group(m: re.Match, i: int) -> int:
+def parse_opt_int_group(m: re.Match[str], i: int) -> int:
     g = m.group(i)
     return int(g) if g else 0
 
 
-def safe_group_by(a: Iterable, k: Callable):
+def safe_group_by(a: Iterable[str], k: Callable):
     return groupby(sorted(a, key=k), key=k)
 
 
-def has_duplicates(items: list) -> bool:
+def has_duplicates(items: list[str]) -> bool:
     return len(set(items)) != len(items)
 
 
@@ -90,7 +90,7 @@ def get_end(start: int, length: int) -> int:
     return start + clamp_non_negative(length - 1)
 
 
-def is_unique_ascending(a: list) -> bool:
+def is_unique_ascending(a: list[int]) -> bool:
     n = len(a)
     if n == 0:
         return True

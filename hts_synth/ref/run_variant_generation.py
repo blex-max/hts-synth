@@ -1,5 +1,5 @@
-from generate_variant import VariantGenerator
-from seq_converter import apply_variants
+from .generate_variant import VariantGenerator
+from .seq_converter import apply_variants
 
 
 def main():
