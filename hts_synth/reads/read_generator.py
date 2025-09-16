@@ -1,7 +1,8 @@
 import numpy as np
+import pysam
 from pysam import AlignedSegment
 
-from typing import Iterator, Optional, Dict
+from typing import Iterator, Iterable, Optional, Dict
 
 from ..ref.enums import VariantType
 from ..ref.generate_variant import VariantGenerator
@@ -10,7 +11,7 @@ class QualityModel():
     """
     Placeholder class for the quality model Alex was working on
     """
-    def get_quality_scores(self, length: int) -> list[int]:
+    def get_quality_scores(self, length: int) -> Iterable[str]:
         """
         Placeholder function for quality string generation
 
@@ -65,7 +66,8 @@ class ReadGenerator():
         read = AlignedSegment()
 
         read.query_sequence = ''.join(variant.alt for variant in variant_generator.generate_random_variant_sequence())
-        read.query_qualities_str = str([chr(score) for score in self.quality_model.get_quality_scores(len(read.query_sequence))])
+        print(self.quality_model.get_quality_scores(len(read.query_sequence)))
+        read.query_qualities_str = pysam.qualities_to_qualitystring(qualities=self.quality_model.get_quality_scores(len(read.query_sequence)))
 
         # TODO actually generate read properties - meaningful name and correct flag
         # Should this function return a pair of reads for paired end sequencing?
@@ -83,7 +85,7 @@ class ReadGenerator():
 
     def generate_multiple(self, reference_position: int, reference_sequence: str, amount: int = 10) -> Iterator[AlignedSegment]:
         """
-        Fucntion used to generate multiple reads
+        Function used to generate multiple reads
 
         Args:
             reference_position (int): The starting position within the reference of the reference sequence
