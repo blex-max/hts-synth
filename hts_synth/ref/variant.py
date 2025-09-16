@@ -23,8 +23,8 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from typing import NoReturn
 
-from enums import VariantType
-from utils import get_end
+from ..ref.enums import VariantType
+from ..ref.utils import get_end
 
 
 def _raise_no_ref_alt() -> NoReturn:

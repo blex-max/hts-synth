@@ -1,8 +1,8 @@
 import random
 from typing import Sequence
-from enums import VariantType
+from ..ref.enums import VariantType
 import numpy as np
-from variant import Variant
+from ..ref.variant import Variant
 
 class VariantGenerator():
 
@@ -31,8 +31,7 @@ class VariantGenerator():
         num_events = num_insertions + num_deletions + num_substitutions
         np.random.seed(0)
         event_indices = list(np.random.permutation(total_length)[:num_events])
-        print(event_indices)
-        # [3, 2, 0, 4]
+
         variant_sequence = []
         for i in range(total_length):
             ref, alt = self.get_ref_alt(i, event_indices, num_insertions, num_deletions)

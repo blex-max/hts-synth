@@ -20,7 +20,7 @@ import re
 
 from typing import Sequence
 
-from variant import Variant
+from ..ref.variant import Variant
 
 
 def apply_variants(ref_start: int, ref_seq: str, alt_length: int, variants: Sequence[Variant]) -> str:
