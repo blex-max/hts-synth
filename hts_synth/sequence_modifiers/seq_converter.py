@@ -3,7 +3,7 @@ import re
 # Modified 2025
 from collections.abc import Sequence
 
-from ..ref.variant import Variant
+from ..sequence_modifiers.variant import Variant
 
 
 def apply_variants(

@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 from faker.providers import BaseProvider
 
-from hts_synth.ref import generate_variant, seq_converter
+from hts_synth.sequence_modifiers import generate_variant, seq_converter
 
 
 class MutatedSequenceProvider(BaseProvider):

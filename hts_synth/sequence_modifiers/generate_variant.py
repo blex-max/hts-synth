@@ -3,8 +3,8 @@ from collections.abc import Sequence
 
 import numpy as np
 
-from ..ref.enums import VariantType
-from ..ref.variant import Variant
+from ..sequence_modifiers.enums import VariantType
+from ..sequence_modifiers.variant import Variant
 
 
 class VariantGenerator:
