@@ -1,6 +1,7 @@
 from array import array
 from collections.abc import Sequence
 from typing import Any
+
 import numpy as np
 import pysam
 
@@ -98,7 +99,7 @@ class NaiveQualLearner(NaiveQualModelBase):
     """
 
     online_means: list[WelfordsRunningMean]
-    nobs: int
+    _nobs: int
 
     def __init__(self, initial_qualities: list[int]) -> None:
         """
@@ -108,7 +109,7 @@ class NaiveQualLearner(NaiveQualModelBase):
             initial_qualities (list[int]): the first observation from data, with which to prime the learner instance (i.e. start the online means)
         """
         self.online_means = [WelfordsRunningMean(q) for q in initial_qualities]
-        self.nobs = 1
+        self._nobs = 1
 
     def update(self, new_quals: list[int]):
         """
@@ -119,15 +120,19 @@ class NaiveQualLearner(NaiveQualModelBase):
         """
         for rm, val in zip(self.online_means, new_quals):  # zip exhausts on shortest iterable
             rm.update(val)
-        self.nobs += 1
+        self._nobs += 1
+
+    @property
+    def observations(self):
+        """
+        Number of total observations the model has learned from so far.
+        """
+        return self._nobs
 
     def yield_model(self):
         """
         Return distribution model of quality score for each position as learned so far.
         """
-        if self.nobs < 3:
-            raise RuntimeError("too few observations to return model")
-
         model: list[tuple[float, float]] = []
         for rm in self.online_means:
             model.append(rm.yield_moments())
@@ -150,15 +155,14 @@ class NaiveQualLearner(NaiveQualModelBase):
         # which means we can very quietly deal with slightly short sequences
         # TODO: Add entry if we find a longer read than we expected
         rinit = next(fq)
-        # breakpoint()
-        init_quals = refine_quals(rinit.get_quality_array())  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+        init_quals = refine_quals(rinit.get_quality_array())
         if init_quals is None:
             raise ValueError
 
         learner = cls(init_quals)
 
         for read in fq:
-            quals = refine_quals(read.get_quality_array())  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
+            quals = refine_quals(read.get_quality_array())
             if quals is None:
                 raise ValueError
             learner.update(quals)
