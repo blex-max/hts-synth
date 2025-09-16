@@ -1,4 +1,5 @@
 import math
+from typing import ClassVar
 
 
 class WelfordsRunningMean:
@@ -9,6 +10,7 @@ class WelfordsRunningMean:
         agg (tuple[int, float, float]): aggregate containing the total number of observations, and the accumulated mean and squared distance from the mean from those observations (m2)
     """
 
+    _MIN_OBS: ClassVar[int] = 2  # you need at least this many obs to return valid moments
     agg: tuple[int, float, float]
 
     def __init__(self, init_val: int | float):
@@ -40,7 +42,7 @@ class WelfordsRunningMean:
             population (bool): whether to return the sample or population sample deviaition
         """
         (count, mean, m2) = self.agg
-        if count < 2:
+        if not count > self._MIN_OBS:
             raise RuntimeError("Insufficient observations to finalise")
         if population:
             sd = math.sqrt(m2 / count)
