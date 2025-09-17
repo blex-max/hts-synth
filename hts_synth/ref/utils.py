@@ -1,7 +1,8 @@
 import re
+from collections.abc import Iterable
 from dataclasses import fields
 from itertools import groupby
-from typing import Any, Callable, Iterable, TypeVar
+from typing import Any, Callable, TypeVar
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
@@ -29,11 +30,11 @@ def has_duplicates(items: list[str]) -> bool:
     return len(set(items)) != len(items)
 
 
-def get_dataclass_fields(cls) -> list[str]:
+def get_dataclass_fields(cls: Any) -> list[str]:
     return [f.name for f in fields(cls)]
 
 
-def get_not_none(it):
+def get_not_none(it: Any):
     return [x for x in it if x is not None]
 
 

@@ -1,5 +1,3 @@
-from typing import Dict, Optional
-
 from faker.providers import BaseProvider
 from pysam import AlignedSegment
 
@@ -24,7 +22,7 @@ class ReadProvider(BaseProvider):
         self,
         reference_position: int = 100,
         reference_sequence: str = "ATGCTGTG",
-        error_probabilities: Optional[Dict[VariantType, float]] = None,
+        error_probabilities: dict[VariantType, float] | None = None,
     ) -> AlignedSegment:
         quality_model = QualityModel()
         generator = ReadGenerator(

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import NoReturn
+from typing import NoReturn, override
 
 from .enums import VariantType
 from .utils import get_end
@@ -17,6 +17,7 @@ class Variant:
     ref: str
     alt: str
 
+    @override
     def __str__(self) -> str:
         return (
             f"{self.pos}del{self.ref}"

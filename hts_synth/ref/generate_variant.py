@@ -1,5 +1,5 @@
 import random
-from typing import Sequence
+from collections.abc import Sequence
 
 import numpy as np
 
@@ -38,10 +38,10 @@ class VariantGenerator:
             The events parameter should have at least 3 elements corresponding to
             the three variant types defined in VariantType enum.
         """
-        self.bases = ["A", "C", "G", "T"]
-        self.ref_offset = 0
-        self.events = events
-        self.ref_sequence = ref_sequence
+        self.bases: list[str] = ["A", "C", "G", "T"]
+        self.ref_offset: int = 0
+        self.events: Sequence[int] = events
+        self.ref_sequence: str = ref_sequence
 
     def generate_random_variant_sequence(self):
         """
@@ -79,7 +79,9 @@ class VariantGenerator:
 
         return variant_sequence
 
-    def get_ref_alt(self, index, event_indices, num_insertions, num_deletions):
+    def get_ref_alt(
+        self, index: int, event_indices: list[int], num_insertions: int, num_deletions: int
+    ):
         """
         Determine the reference and alternative sequences for a given position.
 
@@ -88,7 +90,7 @@ class VariantGenerator:
 
         Args:
             index (int): The current position being processed in the sequence.
-            event_indices (List[int]): List of positions where variants should occur.
+            event_indices (list[int]): List of positions where variants should occur.
             num_insertions (int): Total number of insertions to generate.
             num_deletions (int): Total number of deletions to generate.
 

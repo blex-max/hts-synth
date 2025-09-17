@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, Iterator, Optional
+from collections.abc import Iterable, Iterator
 
 import pysam
 from pysam import AlignedSegment
@@ -9,29 +9,49 @@ from ..ref.generate_variant import VariantGenerator
 
 class QualityModel:
     """
-    Placeholder class for the quality model Alex was working on.
+    Placeholder class for generating quality scores for synthetic reads.
+
+    This class provides functionality to generate quality scores for sequences
+    of specified lengths. Currently serves as a placeholder implementation.
     """
 
     def get_quality_scores(self, length: int) -> Iterable[int]:
         """
-        Placeholder function for quality string generation.
+        Generate quality scores for a sequence of given length.
 
         Args:
-            len (int): length of sequence to generate quality scores for.
+            length (int): The length of the sequence to generate quality scores for.
+
+        Returns:
+            Iterable[int]: An iterable of integer quality scores, currently all zeros as placeholder.
+
+        Example:
+            >>> model = QualityModel()
+            >>> scores = list(model.get_quality_scores(5))
+            >>> print(scores)  # [0, 0, 0, 0, 0]
         """
-        return [0 for i in range(length)]
+        return [0 for _ in range(length)]
 
 
 class ReadGenerator:
     """
-    Class used to generate reads.
+    Generate synthetic sequencing reads with simulated errors.
+
+    This class creates synthetic reads by applying sequencing errors (insertions,
+    deletions, and substitutions) to reference sequences based on configurable
+    error probabilities.
 
     Attributes:
-        quality_model (QualityModel): Object that provides a `quality_string()` function.
-        error_rates (Dict): A dict containing the rate at which errors could occur.
+        quality_model (QualityModel): Object that provides quality score generation functionality.
+        error_probabilities (dict[VariantType, float]): Dictionary mapping VariantType to error probability rates.
+
+    Example:
+        >>> quality_model = QualityModel()
+        >>> generator = ReadGenerator(quality_model)
+        >>> read = generator.generate(100, "ATCGATCG")
     """
 
-    error_probabilities = {
+    error_probabilities: dict[VariantType, float] = {
         VariantType.INSERTION: 0.01,
         VariantType.DELETION: 0.01,
         VariantType.SUBSTITUTION: 0.05,
@@ -40,28 +60,53 @@ class ReadGenerator:
     def __init__(
         self,
         quality_model: QualityModel,
-        error_probabilities: Optional[Dict[VariantType, float]] = None,
+        error_probabilities: dict[VariantType, float] | None = None,
     ):
         """
-        Initialise a Read Generator with a model for generating quality scores (currently a placeholder) and
-        a dictionary of sequencing error probabilities.
+        Initialize a ReadGenerator with quality model and error probabilities.
 
         Args:
-            quality_model (QualityModel): object that provides a `quality_string()` function.
-            error_probabilities (Dict): optional dict containing the rate at which errors could occur.
+            quality_model (QualityModel): Object that provides quality score generation functionality.
+            error_probabilities (dict[VariantType, float] | None): Optional dictionary mapping VariantType to error
+                probability rates. If None, uses class default values.
+
+        Example:
+            >>> quality_model = QualityModel()
+            >>> custom_errors = {VariantType.SUBSTITUTION: 0.02}
+            >>> generator = ReadGenerator(quality_model, custom_errors)
         """
-        self.quality_model = quality_model
+        self.quality_model: QualityModel = quality_model
         if error_probabilities:
             self.error_probabilities = error_probabilities
 
     def generate(self, reference_position: int, reference_sequence: str) -> AlignedSegment:
         """
-        Function to generate a synthetic read by applying mutations based on simulated sequencing errors to
-        a section of the reference sequence.
+        Generate a single synthetic read with simulated sequencing errors.
+
+        Applies mutations based on configured error probabilities to create a
+        realistic synthetic read from the reference sequence.
 
         Args:
-            reference_position (int): The starting position within the reference of the reference sequence.
-            reference_sequence (str): The reference sequence used to generate the reads.
+            reference_position (int): The starting position within the reference genome
+                where this read originates.
+            reference_sequence (str): The reference DNA sequence to use as the basis
+                for read generation.
+
+        Returns:
+            AlignedSegment: An AlignedSegment object representing the synthetic read with:
+                - Mutated sequence based on error probabilities
+                - Quality scores from the quality model
+                - Basic alignment properties set
+
+        Note:
+            The returned read currently has placeholder values for some properties
+            like read name and mapping quality. Future versions will generate
+            more realistic values.
+
+        Example:
+            >>> generator = ReadGenerator(QualityModel())
+            >>> read = generator.generate(100, "ATCGATCG")
+            >>> print(read.query_sequence)  # Potentially mutated sequence
         """
         # [num_insertions, num_deletions, num_substitutions]
         events = [
@@ -97,12 +142,26 @@ class ReadGenerator:
         self, reference_position: int, reference_sequence: str, amount: int = 10
     ) -> Iterator[AlignedSegment]:
         """
-        Function used to generate multiple reads.
+        Generate multiple synthetic reads from the same reference sequence.
+
+        Creates a specified number of independent synthetic reads, each with
+        potentially different mutations applied based on the error probabilities.
 
         Args:
-            reference_position (int): The starting position within the reference of the reference sequence.
-            reference_sequence (str): The reference sequence used to generate the reads.
-            amount (int): The amount of reads to generate.
+            reference_position (int): The starting position within the reference genome
+                where these reads originate.
+            reference_sequence (str): The reference DNA sequence to use as the basis
+                for read generation.
+            amount (int): The number of reads to generate. Defaults to 10.
+
+        Yields:
+            AlignedSegment: Individual synthetic reads, each potentially containing
+                different mutations from the same reference sequence.
+
+        Example:
+            >>> generator = ReadGenerator(QualityModel())
+            >>> reads = list(generator.generate_multiple(100, "ATCGATCG", 5))
+            >>> len(reads)  # 5
         """
-        for i in range(amount):
+        for _ in range(amount):
             yield self.generate(reference_position, reference_sequence)
