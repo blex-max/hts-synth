@@ -85,33 +85,29 @@ python -m basedpyright
 ### [Documentation](https://blex-max.github.io/hts-synth/)
 Documentation is generated using Sphinx on every commit to the main branch.
 
+#### Updating the documentation
+
+The documentation source files are located in the `docs/source/` directory:
+
+- **Main documentation files**: `docs/source/` contains reStructuredText (.rst) files
+  - `index.rst` - Main documentation page
+  - `user_docs/` - User documentation pages
+  - `api/` - Auto-generated API documentation
+- **Configuration**: `docs/source/conf.py` - Sphinx configuration file
+- **Static assets**: `docs/source/_static/` - Custom CSS and other static files
+- **Images**: `docs/source/images/` - Documentation images
+
+To update the documentation:
+1. Edit the relevant `.rst` files in `docs/source/`
+2. Add new images to `docs/source/images/`
+3. Update `docs/source/conf.py` for configuration changes
+4. Generate locally to preview changes (see Local Generation below)
+5. Commit your changes - documentation will be automatically updated online
+
 #### Local Generation
-To generate the documentation locally, using Sphinx. Run the following commands:
+To generate the documentation locally using Sphinx, run the following commands:
 
 ```bash
 cd docs
 make html
 ```
-
-Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
-
-### Testing
-
-To run unit tests with Pytest
-
-```sh
-python -m pytest
-# or
-pytest .
-```
-
-### Authors
-
-- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
-- Helen Schuilenburg - Wellcome Sanger Institue (hs21 (at) sanger.ac.uk)
-- Hitham Hassan - Wellcome Sanger Institue (hh12 (at) sanger.ac.uk)
-- Luca Barbon - Wellcome Sanger Institue (lb29 (at) sanger.ac.uk)
-- Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
-- Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
-- Tom Drever - Wellcome Sanger Institue (td14 (at) sanger.ac.uk)
-- Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)
