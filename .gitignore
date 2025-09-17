@@ -5,7 +5,7 @@ hts_synth.egg-info/
 # Virtual environment
 *venv*/
 
-# Documentation 
+# Documentation
 docs/build/*
 
 # Python
@@ -16,6 +16,6 @@ __pycache__/
 build/
 
 # Data
+plots/
 scratch-data/
 *.fastq
-
