@@ -33,13 +33,13 @@ html_static_path = ["_static"]
 
 # RTD theme options for consistent sidebar
 html_theme_options = {
-    'navigation_depth': 4,
-    'includehidden': True,
-    'titles_only': False,
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'navigation_with_keys': False,
-    'style_external_links': True,
+    "navigation_depth": 4,
+    "includehidden": True,
+    "titles_only": False,
+    "collapse_navigation": False,
+    "sticky_navigation": True,
+    "navigation_with_keys": False,
+    "style_external_links": True,
 }
 
 sys.path.insert(0, os.path.abspath("../../"))
@@ -54,10 +54,10 @@ autodoc_member_order = "bysource"
 
 # Ensure consistent sidebar across all pages
 html_sidebars = {
-    '**': [
-        'globaltoc.html',
-        'relations.html',
-        'sourcelink.html',
-        'searchbox.html',
+    "**": [
+        "globaltoc.html",
+        "relations.html",
+        "sourcelink.html",
+        "searchbox.html",
     ],
 }
