@@ -80,6 +80,9 @@ class VariantGenerator:
             variant = Variant(pos=i, ref=ref, alt=alt)
             variant_sequence.append(variant)
 
+        for edit_event in self.constraints:
+            variant_sequence.append(edit_event)
+
         return variant_sequence
 
     def get_ref_alt(
