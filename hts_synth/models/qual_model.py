@@ -8,7 +8,9 @@ import pysam
 from hts_synth.utils.online_mean import WelfordsRunningMean
 
 
-def refine_quals(query_qualities: Sequence[int] | array[Any] | None) -> list[int] | None:
+def refine_quals(
+    query_qualities: Sequence[int] | array[Any] | None,
+) -> list[int] | None:
     """
     Modfiy common iterables of quality scores into a standard list int.
 
@@ -46,6 +48,7 @@ class NaiveQualSim(NaiveQualModelBase):
     Attributes:
         means (list[float]): Model parameter, distribution means of quality by position
         sds (list[float]): Model paramter, distribution of standard deviations of quality by position
+        rng (np.random.Generator): Random number generator to use for simulation, None will instantiate an unseeded generator
     """
 
     means: list[float]
@@ -55,8 +58,7 @@ class NaiveQualSim(NaiveQualModelBase):
     def __init__(
         self,
         distribution_by_posn: list[tuple[float, float]],
-        rng: np.random.Generator
-        | None = None,  # default None will instantiate an unseeded generator for you
+        rng: np.random.Generator | None = None,
         default_seed: int = 24601,
     ):
         """
@@ -112,25 +114,33 @@ class NaiveQualLearner(NaiveQualModelBase):
         self.online_means = [WelfordsRunningMean(q) for q in initial_qualities]
         self._nobs = 1
 
-    def update(self, new_quals: list[int]):
+    def update(
+        self,
+        new_quals: list[int],
+    ):
         """
         Update the online means for each position.
 
         Args:
             new_quals (list[int]): quality scores of the new observation
         """
-        for rm, val in zip(self.online_means, new_quals):  # zip exhausts on shortest iterable
+        for rm, val in zip(self.online_means, new_quals):
+            # zip exhausts on shortest iterable
             rm.update(val)
         self._nobs += 1
 
     @property
-    def observations(self):
+    def observations(
+        self,
+    ):
         """
         Number of total observations the model has learned from so far.
         """
         return self._nobs
 
-    def yield_model(self):
+    def yield_model(
+        self,
+    ):
         """
         Return distribution model of quality score for each position as learned so far.
         """
