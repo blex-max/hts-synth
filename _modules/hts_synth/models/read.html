@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hts_synth.ref.enums &mdash; hts-synth 0.0.0-alpha0 documentation</title>
+  <title>hts_synth.models.read &mdash; hts-synth 0.0.0-alpha0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
@@ -170,7 +170,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">hts_synth.ref.enums</li>
+      <li class="breadcrumb-item active">hts_synth.models.read</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -179,26 +179,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for hts_synth.ref.enums</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
+  <h1>Source code for hts_synth.models.read</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="Read">
+<a class="viewcode-back" href="../../../api/hts_synth.models.html#hts_synth.models.read.Read">[docs]</a>
+<span></span><span class="k">class</span><span class="w"> </span><span class="nc">Read</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class to hold read properties and functions.&quot;&quot;&quot;</span>
 
-
-<div class="viewcode-block" id="VariantType">
-<a class="viewcode-back" href="../../../api/hts_synth.ref.html#hts_synth.ref.enums.VariantType">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">VariantType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
-    <span class="n">INSERTION</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">DELETION</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">SUBSTITUTION</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mi">3</span></div>
-
-
-
-<div class="viewcode-block" id="VariantClassification">
-<a class="viewcode-back" href="../../../api/hts_synth.ref.html#hts_synth.ref.enums.VariantClassification">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">VariantClassification</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
-    <span class="n">CLASSIFIED</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">UNCLASSIFIED</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">MONOMORPHIC</span> <span class="o">=</span> <span class="mi">2</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span></div>
 
 </pre></div>
 

@@ -18,7 +18,7 @@ Quality Model
 Read Model
 ---------------------------------------------
 
-.. automodule:: hts_synth.molels.read
+.. automodule:: hts_synth.models.read
    :members:
    :show-inheritance:
    :undoc-members:
