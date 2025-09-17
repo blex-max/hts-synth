@@ -12,7 +12,7 @@ from .ref.enums import VariantType
 )
 @click.option(
     "--reference_sequence",
-    default="ATGCTGTG",
+    default=None,
     help="The reference DNA sequence to use as the basis for read generation.",
 )
 @click.option(
