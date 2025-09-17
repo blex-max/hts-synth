@@ -1,7 +1,6 @@
 from array import array
 from collections.abc import Sequence
 from typing import Any
-
 import numpy as np
 import pysam
 
@@ -60,7 +59,7 @@ class NaiveQualSim(NaiveQualModelBase):
     ):
         """
         Initialise object.
-
+        
         Args:
             distribution_by_posn (list[tuple[float, float]]): The model from which the object will simulate quality. Tuples of mean and standard deviation up to desired read length
             rng (numpy.random.Generator): Random number generator that the object should use during simulation, usually provided via numpy.random.default_rng()
@@ -104,7 +103,7 @@ class NaiveQualLearner(NaiveQualModelBase):
     def __init__(self, initial_qualities: list[int]) -> None:
         """
         Initialise object.
-
+        
         Args:
             initial_qualities (list[int]): the first observation from data, with which to prime the learner instance (i.e. start the online means)
         """
@@ -123,7 +122,9 @@ class NaiveQualLearner(NaiveQualModelBase):
         self._nobs += 1
 
     @property
-    def observations(self):
+    def observations(
+        self
+    ):
         """
         Number of total observations the model has learned from so far.
         """
