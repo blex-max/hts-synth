@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Models &mdash; hts-synth 0.0.0-alpha0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=debacad8"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Faker Providers" href="hts_synth.providers.html" />
+    <link rel="prev" title="hts-synth API Reference" href="hts_synth.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hts-synth
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_docs/users_docs.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_docs/users_docs.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html">CLI Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#command-options">Command Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#arguments">Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#output-formats">Output Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#error-simulation">Error Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#quality-scores">Quality Scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html">Faker Interface Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#readprovider">ReadProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#complete-example">Complete Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#testing-setup">Testing Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="hts_synth.html">hts-synth API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.models.qual_model">Quality Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.models.qual_model.refine_quals"><code class="docutils literal notranslate"><span class="pre">refine_quals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.models.qual_model.NaiveQualModelBase"><code class="docutils literal notranslate"><span class="pre">NaiveQualModelBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.models.qual_model.NaiveQualSim"><code class="docutils literal notranslate"><span class="pre">NaiveQualSim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.models.qual_model.NaiveQualLearner"><code class="docutils literal notranslate"><span class="pre">NaiveQualLearner</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#read-model">Read Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.providers.html">Faker Providers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.providers.html#readprovider">ReadProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.providers.html#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.reads.html">Reads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.reads.html#module-hts_synth.reads.read_generator">ReadGenerator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.reads.html#hts_synth.reads.read_generator.QualityModel"><code class="docutils literal notranslate"><span class="pre">QualityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator"><code class="docutils literal notranslate"><span class="pre">ReadGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.ref.html">Ref</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#module-hts_synth.ref.enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.enums.VariantType"><code class="docutils literal notranslate"><span class="pre">VariantType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.enums.VariantClassification"><code class="docutils literal notranslate"><span class="pre">VariantClassification</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#module-hts_synth.ref.generate_variant">Variant</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.generate_variant.VariantGenerator"><code class="docutils literal notranslate"><span class="pre">VariantGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#variant-generation">Variant Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#module-hts_synth.ref.seq_converter">Sequence Converter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.seq_converter.apply_variants"><code class="docutils literal notranslate"><span class="pre">apply_variants()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#module-hts_synth.ref.utils">Ref Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.is_dna"><code class="docutils literal notranslate"><span class="pre">is_dna()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.reverse_complement"><code class="docutils literal notranslate"><span class="pre">reverse_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.parse_opt_int_group"><code class="docutils literal notranslate"><span class="pre">parse_opt_int_group()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.has_duplicates"><code class="docutils literal notranslate"><span class="pre">has_duplicates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.get_dataclass_fields"><code class="docutils literal notranslate"><span class="pre">get_dataclass_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.get_not_none"><code class="docutils literal notranslate"><span class="pre">get_not_none()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.is_adaptor_valid"><code class="docutils literal notranslate"><span class="pre">is_adaptor_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.get_codon_offset_complement"><code class="docutils literal notranslate"><span class="pre">get_codon_offset_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.get_cds_ext_3_length"><code class="docutils literal notranslate"><span class="pre">get_cds_ext_3_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.bool_to_int_str"><code class="docutils literal notranslate"><span class="pre">bool_to_int_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.clamp_non_negative"><code class="docutils literal notranslate"><span class="pre">clamp_non_negative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.get_end"><code class="docutils literal notranslate"><span class="pre">get_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.utils.is_unique_ascending"><code class="docutils literal notranslate"><span class="pre">is_unique_ascending()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.ref.html#module-hts_synth.ref.variant">Variant Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.ref.html#hts_synth.ref.variant.Variant"><code class="docutils literal notranslate"><span class="pre">Variant</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.utils.html">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.utils.html#module-hts_synth.utils.online_mean">Online Mean</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.utils.html#hts_synth.utils.online_mean.WelfordsRunningMean"><code class="docutils literal notranslate"><span class="pre">WelfordsRunningMean</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.wrappers.html">Wrappers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.wrappers.html#module-hts_synth.wrappers.sam_wrapper">Sam Wrapper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.SamFlag"><code class="docutils literal notranslate"><span class="pre">SamFlag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.create_synthetic_read"><code class="docutils literal notranslate"><span class="pre">create_synthetic_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hts-synth</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="hts_synth.html">hts-synth API Reference</a></li>
+      <li class="breadcrumb-item active">Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/hts_synth.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-hts_synth.models">
+<span id="models"></span><h1>Models<a class="headerlink" href="#module-hts_synth.models" title="Link to this heading"></a></h1>
+<section id="module-hts_synth.models.qual_model">
+<span id="quality-model"></span><h2>Quality Model<a class="headerlink" href="#module-hts_synth.models.qual_model" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.refine_quals">
+<span class="sig-name descname"><span class="pre">refine_quals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_qualities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">array</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#refine_quals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.refine_quals" title="Link to this definition"></a></dt>
+<dd><p>Modfiy common iterables of quality scores into a standard list int.</p>
+<p>Mostly a helper to minimise the pain of pysam types with qualities - whatever they are, get them into a list[int] or None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query_qualities</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>array</em><em>[</em><em>Any</em><em>] </em><em>| </em><em>None</em>) – unprocessed qualities (probably from a pysam method)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualModelBase">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NaiveQualModelBase</span></span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualModelBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualModelBase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualSim">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NaiveQualSim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution_by_posn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Generator</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">24601</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualSim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualSim" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hts_synth.models.qual_model.NaiveQualModelBase" title="hts_synth.models.qual_model.NaiveQualModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">NaiveQualModelBase</span></code></a></p>
+<p>A naive model of base quality which can simulate quality arrays based on input per-position normal distributions.</p>
+<ul class="simple">
+<li><p>assumes positions are entirely independent</p></li>
+<li><p>has no sense of genomic position</p></li>
+<li><p>is totally independent of bases/other features</p></li>
+</ul>
+<p>For each position the model simply samples a score from a normal distribution with the provided mean and (sample) SD.
+Read length is implicit to the length of the model parameters provided at init.</p>
+<p>The class also contains an online learning algorithm to learn parameters from an input pysam.FastxFile (fastq).
+The algorithm uses Welford’s Running Mean so as to be reasonably efficient.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualSim.means">
+<span class="sig-name descname"><span class="pre">means</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualSim.means" title="Link to this definition"></a></dt>
+<dd><p>Model parameter, distribution means of quality by position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualSim.sds">
+<span class="sig-name descname"><span class="pre">sds</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualSim.sds" title="Link to this definition"></a></dt>
+<dd><p>Model paramter, distribution of standard deviations of quality by position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualSim.rng">
+<span class="sig-name descname"><span class="pre">rng</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualSim.rng" title="Link to this definition"></a></dt>
+<dd><p>Random number generator to use for simulation, None will instantiate an unseeded generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.random.Generator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">means</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">sds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualSim.yield_n">
+<span class="sig-name descname"><span class="pre">yield_n</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualSim.yield_n"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualSim.yield_n" title="Link to this definition"></a></dt>
+<dd><p>Return n simulated quality arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – total number of results to return</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NaiveQualLearner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_qualities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualLearner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hts_synth.models.qual_model.NaiveQualModelBase" title="hts_synth.models.qual_model.NaiveQualModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">NaiveQualModelBase</span></code></a></p>
+<p>Online learning algorithm for building model parameters from real data, from which NaiveQualSim can then simulate data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.online_means">
+<span class="sig-name descname"><span class="pre">online_means</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.online_means" title="Link to this definition"></a></dt>
+<dd><p>online learner for each position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="hts_synth.utils.html#hts_synth.utils.online_mean.WelfordsRunningMean" title="hts_synth.utils.online_mean.WelfordsRunningMean">WelfordsRunningMean</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.nobs">
+<span class="sig-name descname"><span class="pre">nobs</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.nobs" title="Link to this definition"></a></dt>
+<dd><p>number of observations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">online_means</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="hts_synth.utils.html#hts_synth.utils.online_mean.WelfordsRunningMean" title="hts_synth.utils.online_mean.WelfordsRunningMean"><span class="pre">WelfordsRunningMean</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_quals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualLearner.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.update" title="Link to this definition"></a></dt>
+<dd><p>Update the online means for each position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_quals</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – quality scores of the new observation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.observations">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">observations</span></span><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.observations" title="Link to this definition"></a></dt>
+<dd><p>Number of total observations the model has learned from so far.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.yield_model">
+<span class="sig-name descname"><span class="pre">yield_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualLearner.yield_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.yield_model" title="Link to this definition"></a></dt>
+<dd><p>Return distribution model of quality score for each position as learned so far.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.models.qual_model.NaiveQualLearner.model_from_fastq">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_from_fastq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FastxFile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/models/qual_model.html#NaiveQualLearner.model_from_fastq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.models.qual_model.NaiveQualLearner.model_from_fastq" title="Link to this definition"></a></dt>
+<dd><p>From a fastq file handle as opened by pysam, learn a model from that data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fq</strong> (<em>pysam.FastxFile</em>) – Open pysam file handle to fastq</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="read-model">
+<h2>Read Model<a class="headerlink" href="#read-model" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hts_synth.html" class="btn btn-neutral float-left" title="hts-synth API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hts_synth.providers.html" class="btn btn-neutral float-right" title="Faker Providers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alex Byrne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

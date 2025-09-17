@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faker Interface Documentation &mdash; hts-synth 0.0.0-alpha0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=debacad8"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hts-synth API Reference" href="../api/hts_synth.html" />
+    <link rel="prev" title="CLI Interface" href="users_docs.cli-interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hts-synth
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="users_docs.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="users_docs.html#getting-started">Getting Started</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="users_docs.cli-interface.html">CLI Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#command-options">Command Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#arguments">Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#output-formats">Output Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#error-simulation">Error Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#quality-scores">Quality Scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users_docs.cli-interface.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Faker Interface Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readprovider">ReadProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complete-example">Complete Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing-setup">Testing Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hts_synth.html">hts-synth API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.models.html">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.models.html#module-hts_synth.models.qual_model">Quality Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.qual_model.refine_quals"><code class="docutils literal notranslate"><span class="pre">refine_quals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.qual_model.NaiveQualModelBase"><code class="docutils literal notranslate"><span class="pre">NaiveQualModelBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.qual_model.NaiveQualSim"><code class="docutils literal notranslate"><span class="pre">NaiveQualSim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.qual_model.NaiveQualLearner"><code class="docutils literal notranslate"><span class="pre">NaiveQualLearner</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.models.html#read-model">Read Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.providers.html">Faker Providers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.providers.html#readprovider">ReadProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.providers.html#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.reads.html">Reads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.reads.html#module-hts_synth.reads.read_generator">ReadGenerator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.reads.html#hts_synth.reads.read_generator.QualityModel"><code class="docutils literal notranslate"><span class="pre">QualityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator"><code class="docutils literal notranslate"><span class="pre">ReadGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.ref.html">Ref</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#module-hts_synth.ref.enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.enums.VariantType"><code class="docutils literal notranslate"><span class="pre">VariantType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.enums.VariantClassification"><code class="docutils literal notranslate"><span class="pre">VariantClassification</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#module-hts_synth.ref.generate_variant">Variant</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.generate_variant.VariantGenerator"><code class="docutils literal notranslate"><span class="pre">VariantGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#variant-generation">Variant Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#module-hts_synth.ref.seq_converter">Sequence Converter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.seq_converter.apply_variants"><code class="docutils literal notranslate"><span class="pre">apply_variants()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#module-hts_synth.ref.utils">Ref Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.is_dna"><code class="docutils literal notranslate"><span class="pre">is_dna()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.reverse_complement"><code class="docutils literal notranslate"><span class="pre">reverse_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.parse_opt_int_group"><code class="docutils literal notranslate"><span class="pre">parse_opt_int_group()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.has_duplicates"><code class="docutils literal notranslate"><span class="pre">has_duplicates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.get_dataclass_fields"><code class="docutils literal notranslate"><span class="pre">get_dataclass_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.get_not_none"><code class="docutils literal notranslate"><span class="pre">get_not_none()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.is_adaptor_valid"><code class="docutils literal notranslate"><span class="pre">is_adaptor_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.get_codon_offset_complement"><code class="docutils literal notranslate"><span class="pre">get_codon_offset_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.get_cds_ext_3_length"><code class="docutils literal notranslate"><span class="pre">get_cds_ext_3_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.bool_to_int_str"><code class="docutils literal notranslate"><span class="pre">bool_to_int_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.clamp_non_negative"><code class="docutils literal notranslate"><span class="pre">clamp_non_negative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.get_end"><code class="docutils literal notranslate"><span class="pre">get_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.utils.is_unique_ascending"><code class="docutils literal notranslate"><span class="pre">is_unique_ascending()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.ref.html#module-hts_synth.ref.variant">Variant Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.ref.html#hts_synth.ref.variant.Variant"><code class="docutils literal notranslate"><span class="pre">Variant</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.utils.html">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.utils.html#module-hts_synth.utils.online_mean">Online Mean</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.utils.html#hts_synth.utils.online_mean.WelfordsRunningMean"><code class="docutils literal notranslate"><span class="pre">WelfordsRunningMean</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.wrappers.html">Wrappers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.wrappers.html#module-hts_synth.wrappers.sam_wrapper">Sam Wrapper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.SamFlag"><code class="docutils literal notranslate"><span class="pre">SamFlag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.create_synthetic_read"><code class="docutils literal notranslate"><span class="pre">create_synthetic_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hts-synth</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="users_docs.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Faker Interface Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_docs/users_docs.faker-interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="faker-interface-documentation">
+<h1>Faker Interface Documentation<a class="headerlink" href="#faker-interface-documentation" title="Link to this heading"></a></h1>
+<p>This document describes how to set up and use the two custom Faker providers available in hts-synth: <code class="docutils literal notranslate"><span class="pre">ReadProvider</span></code> and <code class="docutils literal notranslate"><span class="pre">MutatedSequenceProvider</span></code>.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
+<p>To use the custom Faker providers, you need to first create a Faker instance and add the providers to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">faker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.read_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReadProvider</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.mutated_sequence_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">MutatedSequenceProvider</span>
+
+<span class="c1"># Create a Faker instance</span>
+<span class="n">faker</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+
+<span class="c1"># Add the custom providers</span>
+<span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">ReadProvider</span><span class="p">)</span>
+<span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">MutatedSequenceProvider</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="readprovider">
+<h2>ReadProvider<a class="headerlink" href="#readprovider" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReadProvider</span></code> generates synthetic sequencing reads using a quality model and error probabilities.</p>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">read(reference_position=100,</span> <span class="pre">reference_sequence=&quot;ATGCTGTG&quot;,</span> <span class="pre">error_probabilities=None)</span></code></dt><dd><p>Generates a synthetic read as an <code class="docutils literal notranslate"><span class="pre">AlignedSegment</span></code> object.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference_position</span></code> (int, optional): The reference position for the read. Default: 100</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference_sequence</span></code> (str, optional): The reference sequence to base the read on. Default: “ATGCTGTG”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error_probabilities</span></code> (dict[VariantType, float] | None, optional): Dictionary mapping variant types to their error probabilities. Default: None</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AlignedSegment</span></code>: A synthetic sequencing read</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a read with default parameters</span>
+<span class="n">read</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>  <span class="c1"># Output: synthetic sequence</span>
+
+<span class="c1"># Generate a read with custom parameters</span>
+<span class="n">custom_read</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>
+    <span class="n">reference_position</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">reference_sequence</span><span class="o">=</span><span class="s2">&quot;ATGCATGCATGC&quot;</span><span class="p">,</span>
+    <span class="n">error_probabilities</span><span class="o">=</span><span class="p">{</span><span class="n">VariantType</span><span class="o">.</span><span class="n">SUBSTITUTION</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="mutatedsequenceprovider">
+<h2>MutatedSequenceProvider<a class="headerlink" href="#mutatedsequenceprovider" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">MutatedSequenceProvider</span></code> generates mutated DNA sequences by applying a specified number of insertions, deletions, and substitutions to an input sequence.</p>
+<section id="id1">
+<h3>Methods<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">mutated_sequence(sequence,</span> <span class="pre">events)</span></code></dt><dd><p>Generates a mutated version of the input sequence.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> (str): The input DNA sequence to mutate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">events</span></code> (Sequence[int]): A sequence of three integers representing the number of insertions, deletions, and substitutions to apply</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: The mutated DNA sequence</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Original sequence</span>
+<span class="n">original_seq</span> <span class="o">=</span> <span class="s2">&quot;ATGCATGCATGC&quot;</span>
+
+<span class="c1"># Apply 1 insertion, 1 deletion, and 2 substitutions</span>
+<span class="n">mutated_seq</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">mutated_sequence</span><span class="p">(</span>
+    <span class="n">sequence</span><span class="o">=</span><span class="n">original_seq</span><span class="p">,</span>
+    <span class="n">events</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># [insertions, deletions, substitutions]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original: </span><span class="si">{</span><span class="n">original_seq</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mutated:  </span><span class="si">{</span><span class="n">mutated_seq</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="complete-example">
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading"></a></h2>
+<p>Here’s a complete example showing how to set up and use both providers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">faker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.read_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReadProvider</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.mutated_sequence_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">MutatedSequenceProvider</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.ref.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariantType</span>
+
+<span class="c1"># Setup</span>
+<span class="n">faker</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">ReadProvider</span><span class="p">)</span>
+<span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">MutatedSequenceProvider</span><span class="p">)</span>
+
+<span class="c1"># Generate a synthetic read</span>
+<span class="n">synthetic_read</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>
+    <span class="n">reference_position</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="n">reference_sequence</span><span class="o">=</span><span class="s2">&quot;ATGCGTACGTACGTAC&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read sequence: </span><span class="si">{</span><span class="n">synthetic_read</span><span class="o">.</span><span class="n">sequence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generate a mutated sequence</span>
+<span class="n">original_sequence</span> <span class="o">=</span> <span class="s2">&quot;ATGCGTACGTACGTAC&quot;</span>
+<span class="n">mutated_sequence</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">mutated_sequence</span><span class="p">(</span>
+    <span class="n">sequence</span><span class="o">=</span><span class="n">original_sequence</span><span class="p">,</span>
+    <span class="n">events</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># 2 insertions, 1 deletion, 3 substitutions</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original sequence: </span><span class="si">{</span><span class="n">original_sequence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mutated sequence:  </span><span class="si">{</span><span class="n">mutated_sequence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-setup">
+<h2>Testing Setup<a class="headerlink" href="#testing-setup" title="Link to this heading"></a></h2>
+<p>For testing purposes, you can set up the providers in a pytest fixture as shown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">faker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.read_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReadProvider</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hts_synth.providers.mutated_sequence_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">MutatedSequenceProvider</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">faker</span><span class="p">():</span>
+    <span class="n">faker</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+    <span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">ReadProvider</span><span class="p">)</span>
+    <span class="n">faker</span><span class="o">.</span><span class="n">add_provider</span><span class="p">(</span><span class="n">MutatedSequenceProvider</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">faker</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="users_docs.cli-interface.html" class="btn btn-neutral float-left" title="CLI Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/hts_synth.html" class="btn btn-neutral float-right" title="hts-synth API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alex Byrne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

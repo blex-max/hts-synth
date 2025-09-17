@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ref &mdash; hts-synth 0.0.0-alpha0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=debacad8"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Utilities" href="hts_synth.utils.html" />
+    <link rel="prev" title="Reads" href="hts_synth.reads.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            hts-synth
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_docs/users_docs.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_docs/users_docs.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html">CLI Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#command-options">Command Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#arguments">Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#output-formats">Output Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#error-simulation">Error Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#quality-scores">Quality Scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.cli-interface.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html">Faker Interface Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#readprovider">ReadProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#complete-example">Complete Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_docs/users_docs.faker-interface.html#testing-setup">Testing Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="hts_synth.html">hts-synth API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.models.html">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.models.html#module-hts_synth.models.qual_model">Quality Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.models.html#hts_synth.models.qual_model.refine_quals"><code class="docutils literal notranslate"><span class="pre">refine_quals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.models.html#hts_synth.models.qual_model.NaiveQualModelBase"><code class="docutils literal notranslate"><span class="pre">NaiveQualModelBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.models.html#hts_synth.models.qual_model.NaiveQualSim"><code class="docutils literal notranslate"><span class="pre">NaiveQualSim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.models.html#hts_synth.models.qual_model.NaiveQualLearner"><code class="docutils literal notranslate"><span class="pre">NaiveQualLearner</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.models.html#read-model">Read Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.providers.html">Faker Providers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.providers.html#readprovider">ReadProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.providers.html#mutatedsequenceprovider">MutatedSequenceProvider</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.reads.html">Reads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.reads.html#module-hts_synth.reads.read_generator">ReadGenerator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.reads.html#hts_synth.reads.read_generator.QualityModel"><code class="docutils literal notranslate"><span class="pre">QualityModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator"><code class="docutils literal notranslate"><span class="pre">ReadGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ref</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.ref.enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.enums.VariantType"><code class="docutils literal notranslate"><span class="pre">VariantType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.enums.VariantClassification"><code class="docutils literal notranslate"><span class="pre">VariantClassification</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.ref.generate_variant">Variant</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.generate_variant.VariantGenerator"><code class="docutils literal notranslate"><span class="pre">VariantGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-generation">Variant Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.ref.seq_converter">Sequence Converter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.seq_converter.apply_variants"><code class="docutils literal notranslate"><span class="pre">apply_variants()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.ref.utils">Ref Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.is_dna"><code class="docutils literal notranslate"><span class="pre">is_dna()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.reverse_complement"><code class="docutils literal notranslate"><span class="pre">reverse_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.parse_opt_int_group"><code class="docutils literal notranslate"><span class="pre">parse_opt_int_group()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.has_duplicates"><code class="docutils literal notranslate"><span class="pre">has_duplicates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.get_dataclass_fields"><code class="docutils literal notranslate"><span class="pre">get_dataclass_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.get_not_none"><code class="docutils literal notranslate"><span class="pre">get_not_none()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.is_adaptor_valid"><code class="docutils literal notranslate"><span class="pre">is_adaptor_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.get_codon_offset_complement"><code class="docutils literal notranslate"><span class="pre">get_codon_offset_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.get_cds_ext_3_length"><code class="docutils literal notranslate"><span class="pre">get_cds_ext_3_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.bool_to_int_str"><code class="docutils literal notranslate"><span class="pre">bool_to_int_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.clamp_non_negative"><code class="docutils literal notranslate"><span class="pre">clamp_non_negative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.get_end"><code class="docutils literal notranslate"><span class="pre">get_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.utils.is_unique_ascending"><code class="docutils literal notranslate"><span class="pre">is_unique_ascending()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-hts_synth.ref.variant">Variant Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hts_synth.ref.variant.Variant"><code class="docutils literal notranslate"><span class="pre">Variant</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.utils.html">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.utils.html#module-hts_synth.utils.online_mean">Online Mean</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.utils.html#hts_synth.utils.online_mean.WelfordsRunningMean"><code class="docutils literal notranslate"><span class="pre">WelfordsRunningMean</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hts_synth.wrappers.html">Wrappers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hts_synth.wrappers.html#module-hts_synth.wrappers.sam_wrapper">Sam Wrapper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.SamFlag"><code class="docutils literal notranslate"><span class="pre">SamFlag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hts_synth.wrappers.html#hts_synth.wrappers.sam_wrapper.create_synthetic_read"><code class="docutils literal notranslate"><span class="pre">create_synthetic_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hts-synth</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="hts_synth.html">hts-synth API Reference</a></li>
+      <li class="breadcrumb-item active">Ref</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/hts_synth.ref.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ref">
+<h1>Ref<a class="headerlink" href="#ref" title="Link to this heading"></a></h1>
+<section id="module-hts_synth.ref.enums">
+<span id="enums"></span><h2>Enums<a class="headerlink" href="#module-hts_synth.ref.enums" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantType">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/enums.html#VariantType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.enums.VariantType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantType.INSERTION">
+<span class="sig-name descname"><span class="pre">INSERTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantType.INSERTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantType.DELETION">
+<span class="sig-name descname"><span class="pre">DELETION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantType.DELETION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantType.SUBSTITUTION">
+<span class="sig-name descname"><span class="pre">SUBSTITUTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantType.SUBSTITUTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantType.UNKNOWN">
+<span class="sig-name descname"><span class="pre">UNKNOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantType.UNKNOWN" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantClassification">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/enums.html#VariantClassification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.enums.VariantClassification" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantClassification.CLASSIFIED">
+<span class="sig-name descname"><span class="pre">CLASSIFIED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantClassification.CLASSIFIED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantClassification.UNCLASSIFIED">
+<span class="sig-name descname"><span class="pre">UNCLASSIFIED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantClassification.UNCLASSIFIED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.enums.VariantClassification.MONOMORPHIC">
+<span class="sig-name descname"><span class="pre">MONOMORPHIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#hts_synth.ref.enums.VariantClassification.MONOMORPHIC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hts_synth.ref.generate_variant">
+<span id="variant"></span><h2>Variant<a class="headerlink" href="#module-hts_synth.ref.generate_variant" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/generate_variant.html#VariantGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for generating synthetic genomic variants that simulate VCF file contents.</p>
+<p>This class creates random genomic variants (insertions, deletions, substitutions)
+based on a reference sequence and specified event counts. It’s designed for
+synthetic data generation in bioinformatics applications.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.bases">
+<span class="sig-name descname"><span class="pre">bases</span></span><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.bases" title="Link to this definition"></a></dt>
+<dd><p>Available DNA bases for variant generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.ref_offset">
+<span class="sig-name descname"><span class="pre">ref_offset</span></span><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.ref_offset" title="Link to this definition"></a></dt>
+<dd><p>Tracking offset for reference sequence position adjustments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.events">
+<span class="sig-name descname"><span class="pre">events</span></span><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.events" title="Link to this definition"></a></dt>
+<dd><p>Number of each variant type to generate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.ref_sequence">
+<span class="sig-name descname"><span class="pre">ref_sequence</span></span><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.ref_sequence" title="Link to this definition"></a></dt>
+<dd><p>The reference genomic sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.generate_random_variant_sequence">
+<span class="sig-name descname"><span class="pre">generate_random_variant_sequence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/generate_variant.html#VariantGenerator.generate_random_variant_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.generate_random_variant_sequence" title="Link to this definition"></a></dt>
+<dd><p>Generate a random sequence of variants based on the configured event counts.</p>
+<p>This method creates a synthetic variant sequence by randomly placing insertions,
+deletions, and substitutions across the reference sequence. The positions are
+determined using a random permutation to ensure even distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A list of Variant objects representing the generated variants.</dt><dd><p>Each variant contains position, reference, and alternative sequences.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#hts_synth.ref.variant.Variant" title="hts_synth.ref.variant.Variant">Variant</a>]</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The total sequence length is calculated as the maximum of reference length
+and alternative length (ref_length + insertions - deletions)</p></li>
+<li><p>Event positions are randomly distributed across the total length</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.generate_variant.VariantGenerator.get_ref_alt">
+<span class="sig-name descname"><span class="pre">get_ref_alt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_insertions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_deletions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/generate_variant.html#VariantGenerator.get_ref_alt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.generate_variant.VariantGenerator.get_ref_alt" title="Link to this definition"></a></dt>
+<dd><p>Determine the reference and alternative sequences for a given position.</p>
+<p>This method decides what type of variant (if any) should occur at a specific
+index based on the predetermined event positions and counts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – The current position being processed in the sequence.</p></li>
+<li><p><strong>event_indices</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – List of positions where variants should occur.</p></li>
+<li><p><strong>num_insertions</strong> (<em>int</em>) – Total number of insertions to generate.</p></li>
+<li><p><strong>num_deletions</strong> (<em>int</em>) – Total number of deletions to generate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing (reference_sequence, alternative_sequence):</dt><dd><ul class="simple">
+<li><p>For insertions: (“”, random_base)</p></li>
+<li><p>For deletions: (reference_base, “”)</p></li>
+<li><p>For substitutions: (reference_base, random_base)</p></li>
+<li><p>For no variant: (reference_base, reference_base)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, str]</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Event types are determined by position in event_indices list:
+- First num_insertions positions are insertions
+- Next num_deletions positions are deletions
+- Remaining positions are substitutions</p></li>
+<li><p>Decrements self.ref_offset for insertions to track position adjustments</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="variant-generation">
+<h2>Variant Generation<a class="headerlink" href="#variant-generation" title="Link to this heading"></a></h2>
+</section>
+<section id="module-hts_synth.ref.seq_converter">
+<span id="sequence-converter"></span><h2>Sequence Converter<a class="headerlink" href="#module-hts_synth.ref.seq_converter" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.seq_converter.apply_variants">
+<span class="sig-name descname"><span class="pre">apply_variants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variants</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#hts_synth.ref.variant.Variant" title="hts_synth.ref.variant.Variant"><span class="pre">Variant</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/seq_converter.html#apply_variants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.seq_converter.apply_variants" title="Link to this definition"></a></dt>
+<dd><p>Alter a DNA sequence based on a set of variants.</p>
+<p>Assumptions:
+- variants are fully in range of the reference sequence.
+- variants do not overlap with each other.
+- variants are sorted by position.</p>
+</dd></dl>
+
+</section>
+<section id="module-hts_synth.ref.utils">
+<span id="ref-utils"></span><h2>Ref Utils<a class="headerlink" href="#module-hts_synth.ref.utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.is_dna">
+<span class="sig-name descname"><span class="pre">is_dna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#is_dna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.is_dna" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.reverse_complement">
+<span class="sig-name descname"><span class="pre">reverse_complement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#reverse_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.reverse_complement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.parse_opt_int_group">
+<span class="sig-name descname"><span class="pre">parse_opt_int_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Match</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#parse_opt_int_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.parse_opt_int_group" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.has_duplicates">
+<span class="sig-name descname"><span class="pre">has_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#has_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.has_duplicates" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.get_dataclass_fields">
+<span class="sig-name descname"><span class="pre">get_dataclass_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#get_dataclass_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.get_dataclass_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.get_not_none">
+<span class="sig-name descname"><span class="pre">get_not_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#get_not_none"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.get_not_none" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.is_adaptor_valid">
+<span class="sig-name descname"><span class="pre">is_adaptor_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adaptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#is_adaptor_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.is_adaptor_valid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.get_codon_offset_complement">
+<span class="sig-name descname"><span class="pre">get_codon_offset_complement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#get_codon_offset_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.get_codon_offset_complement" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.get_cds_ext_3_length">
+<span class="sig-name descname"><span class="pre">get_cds_ext_3_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#get_cds_ext_3_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.get_cds_ext_3_length" title="Link to this definition"></a></dt>
+<dd><p>Calculate how many nucleotides are missing from the last codon based on the length of the sequence.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.bool_to_int_str">
+<span class="sig-name descname"><span class="pre">bool_to_int_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#bool_to_int_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.bool_to_int_str" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.clamp_non_negative">
+<span class="sig-name descname"><span class="pre">clamp_non_negative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#clamp_non_negative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.clamp_non_negative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.get_end">
+<span class="sig-name descname"><span class="pre">get_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#get_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.get_end" title="Link to this definition"></a></dt>
+<dd><p>Get inclusive end position given start and length.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hts_synth.ref.utils.is_unique_ascending">
+<span class="sig-name descname"><span class="pre">is_unique_ascending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/hts_synth/ref/utils.html#is_unique_ascending"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.utils.is_unique_ascending" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-hts_synth.ref.variant">
+<span id="variant-module"></span><h2>Variant Module<a class="headerlink" href="#module-hts_synth.ref.variant" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Variant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'int'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/variant.html#Variant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.variant.Variant" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.pos" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.ref">
+<span class="sig-name descname"><span class="pre">ref</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.ref" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.alt">
+<span class="sig-name descname"><span class="pre">alt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.alt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.ref_len">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_len</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.ref_len" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.alt_len">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alt_len</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.alt_len" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.alt_ref_delta">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alt_ref_delta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.alt_ref_delta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.ref_end">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.ref_end" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.type">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#hts_synth.ref.enums.VariantType" title="hts_synth.ref.enums.VariantType"><span class="pre">VariantType</span></a></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.is_insertion">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_insertion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#hts_synth.ref.variant.Variant.is_insertion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.get_del">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_del</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#hts_synth.ref.variant.Variant" title="hts_synth.ref.variant.Variant"><span class="pre">Variant</span></a></span></span><a class="reference internal" href="../_modules/hts_synth/ref/variant.html#Variant.get_del"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.variant.Variant.get_del" title="Link to this definition"></a></dt>
+<dd><p>Create a deletion.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.get_ins">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_ins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#hts_synth.ref.variant.Variant" title="hts_synth.ref.variant.Variant"><span class="pre">Variant</span></a></span></span><a class="reference internal" href="../_modules/hts_synth/ref/variant.html#Variant.get_ins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.variant.Variant.get_ins" title="Link to this definition"></a></dt>
+<dd><p>Create an insertion.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/variant.html#Variant.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.variant.Variant.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hts_synth.ref.variant.Variant.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hts_synth/ref/variant.html#Variant.offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hts_synth.ref.variant.Variant.offset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hts_synth.reads.html" class="btn btn-neutral float-left" title="Reads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hts_synth.utils.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alex Byrne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
