@@ -102,7 +102,7 @@ pytest .
 
 ### Authors
 
-- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - CONTACT)
+- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
 - Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
 - Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
 - Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)
