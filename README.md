@@ -46,10 +46,22 @@ From the repo's base directory
 
 ```sh
 pyenv install 3.12
-python -m venv .venv
+python3 -m venv .venv
 source ./.venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
+```
+
+## Contributing
+
+The followng checks are automatically run by pre-commit.
+If this is the first time you're commiting to this repo, ensure your pre-commit is configured.
+
+Note: you will need to have an SSH public keyadded to your GitHub profile.
+
+```bash
+source ./.venv/bin/activate
+pre-commit
 ```
 
 ### Linting and Typing
