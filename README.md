@@ -29,6 +29,8 @@ TTCATCTAAAATATATGAAC
 klPsyRcqfervojkGHICH
 ```
 
+![Example command line usage](docs/source/images/hts-synth-fastq-gen2.gif)
+
 ## Examples
 
 There are usage examples in ./examples. To successfully run the Jyputer notebook, install development the requirements and acquire a FASTQ file for testing. The one that was tested against contains 25 000 reads, each 100 bps long. See [TESTX_H7YRLADXX_S1_L001_R1_001.fastq](https://github.com/hartwigmedical/testdata/tree/master/100k_reads_hiseq/TESTX).
