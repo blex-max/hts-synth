@@ -81,8 +81,10 @@ python -m basedpyright
 ```
 
 ### [Documentation](https://blex-max.github.io/hts-synth/)
+Documentation is generated using Sphinx on every commit to the main branch.
 
-To generate the documentation, using Sphinx. Run the following commands:
+#### Local Generation
+To generate the documentation locally, using Sphinx. Run the following commands:
 
 ```bash
 cd docs
