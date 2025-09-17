@@ -32,7 +32,7 @@ exclude_patterns = []
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
-sys.path.insert(0, os.path.abspath("../../hts_synth"))
+sys.path.insert(0, os.path.abspath("../../"))
 
 autodoc_default_options = {
     "members": True,
