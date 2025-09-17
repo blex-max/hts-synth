@@ -83,10 +83,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.qual_model.NaiveQualLearner"><code class="docutils literal notranslate"><span class="pre">NaiveQualLearner</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api/hts_synth.models.html#module-hts_synth.models.read">Read Model</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../api/hts_synth.models.html#hts_synth.models.read.Read"><code class="docutils literal notranslate"><span class="pre">Read</span></code></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api/hts_synth.providers.html">Faker Providers</a><ul>
@@ -212,23 +208,34 @@
 </pre></div>
 </div>
 <p>Generate 5 reads:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span><span class="m">5</span><span class="w"> </span>ATCGATCGATCG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>ATCGATCGATCG<span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 <p>Generate reads with custom error probabilities:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>--insertion-probability<span class="w"> </span><span class="m">0</span>.05<span class="w"> </span>--deletion-probability<span class="w"> </span><span class="m">0</span>.03<span class="w"> </span><span class="m">10</span><span class="w"> </span>ATCGATCGATCG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>--insertion-probability<span class="w"> </span><span class="m">0</span>.05<span class="w"> </span>--deletion-probability<span class="w"> </span><span class="m">0</span>.03<span class="w"> </span>ATCGATCGATCG<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 </section>
 <section id="command-options">
 <h2>Command Options<a class="headerlink" href="#command-options" title="Link to this heading"></a></h2>
-<section id="position-options">
-<h3>Position Options<a class="headerlink" href="#position-options" title="Link to this heading"></a></h3>
+<section id="reference-position-options">
+<h3>Reference position Options<a class="headerlink" href="#reference-position-options" title="Link to this heading"></a></h3>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">-p,</span> <span class="pre">--reference-position</span> <span class="pre">INTEGER</span></code></dt><dd><p>The starting position within the reference genome where this read originates.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">-c,</span> <span class="pre">--reference-chrom</span> <span class="pre">STR</span></code></dt><dd><p>The chromosome within the reference genome where this read originates.</p>
+<ul class="simple">
+<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">--reference-chrom</span> <span class="pre">chr1</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s,</span> <span class="pre">--reference-start</span> <span class="pre">INTEGER</span></code></dt><dd><p>The starting position within the reference genome where this read originates.</p>
 <ul class="simple">
 <li><p><strong>Default:</strong> 0</p></li>
-<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">--reference-position</span> <span class="pre">1000</span></code></p></li>
+<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">--reference-start</span> <span class="pre">1000</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-s,</span> <span class="pre">--reference-end</span> <span class="pre">INTEGER</span></code></dt><dd><p>The end position within the reference genome where this read originates.</p>
+<ul class="simple">
+<li><p><strong>Default:</strong> 0</p></li>
+<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">--reference-end</span> <span class="pre">1010</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -288,18 +295,18 @@
 <section id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading"></a></h2>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">NREADS</span></code></dt><dd><p>Number of reads to generate (optional, default: 1).</p>
-<ul class="simple">
-<li><p><strong>Type:</strong> Integer</p></li>
-<li><p><strong>Default:</strong> 1</p></li>
-<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">10</span></code> (generates 10 reads)</p></li>
-</ul>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">REF</span></code></dt><dd><p>Reference sequence from which to generate synthetic reads (required).</p>
 <ul class="simple">
 <li><p><strong>Type:</strong> String</p></li>
 <li><p><strong>Format:</strong> DNA sequence using standard nucleotide letters (A, T, C, G)</p></li>
 <li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">ATCGATCGATCGATCG</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">NREADS</span></code></dt><dd><p>Number of reads to generate (optional, default: 1).</p>
+<ul class="simple">
+<li><p><strong>Type:</strong> Integer</p></li>
+<li><p><strong>Default:</strong> 1</p></li>
+<li><p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">10</span></code> (generates 10 reads)</p></li>
 </ul>
 </dd>
 </dl>
@@ -347,7 +354,7 @@ IIIIIIIIIIII
 </pre></div>
 </div>
 <p>Generate 10 reads:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span><span class="m">10</span><span class="w"> </span>ATCGATCGATCGATCG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 </section>
@@ -357,11 +364,11 @@ IIIIIIIIIIII
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>--insertion-probability<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
 <span class="w">          </span>--deletion-probability<span class="w"> </span><span class="m">0</span>.08<span class="w"> </span><span class="se">\</span>
 <span class="w">          </span>--substitution-probability<span class="w"> </span><span class="m">0</span>.15<span class="w"> </span><span class="se">\</span>
-<span class="w">          </span><span class="m">5</span><span class="w"> </span>ATCGATCGATCGATCG
+<span class="w">          </span>ATCGATCGATCGATCG<span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 <p>Generate reads starting from a specific reference position:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>--reference-position<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">10</span><span class="w"> </span>ATCGATCGATCGATCG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hts-synth<span class="w"> </span>--reference-start<span class="w"> </span><span class="m">1000</span><span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 <p>Output only sequences (useful for piping):</p>
@@ -370,10 +377,10 @@ IIIIIIIIIIII
 </div>
 <p>Combine with shell commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count the number of reads generated</span>
-hts-synth<span class="w"> </span>--out-format<span class="w"> </span>seq<span class="w"> </span><span class="m">100</span><span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+hts-synth<span class="w"> </span>--out-format<span class="w"> </span>seq<span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 
 <span class="c1"># Save to file</span>
-hts-synth<span class="w"> </span><span class="m">1000</span><span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span>&gt;<span class="w"> </span>synthetic_reads.fastq
+hts-synth<span class="w"> </span>ATCGATCGATCGATCG<span class="w"> </span><span class="m">1000</span><span class="w"> </span>&gt;<span class="w"> </span>synthetic_reads.fastq
 </pre></div>
 </div>
 </section>
