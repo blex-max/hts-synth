@@ -6,6 +6,28 @@
 
 Biodev Hackathon 2025 - constrained generation of HTS data for testing and exploration.
 
+## Installation
+
+```sh
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .
+```
+
+## Usage
+
+The synthesising tool can be used both as a Faker provider for unit tests and as a command-line data generator.
+
+### Command line usage
+
+```sh
+$ hts-synth --help
+
+$ hts-synth --length=20                                                                         10:41:52
+TTCATCTAAAATATATGAAC
+klPsyRcqfervojkGHICH
+```
+
 ## Development
 
 ### Requirements
@@ -52,6 +74,16 @@ Basedpyright for typing
 ```sh
 python -m basedpyright
 ```
+
+### Documentation
+To generate the documentation, using Sphinx. Run the following commands:
+
+```bash
+cd docs
+make html
+```
+Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
+
 
 ### Testing
 
