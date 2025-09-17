@@ -32,6 +32,8 @@ klPsyRcqfervojkGHICH
 
 There are usage examples in ./examples. To successfully run the Jyputer notebook, install development the requirements and acquire a FASTQ file for testing. The one that was tested against contains 25 000 reads, each 100 bps long. See [TESTX_H7YRLADXX_S1_L001_R1_001.fastq](https://github.com/hartwigmedical/testdata/tree/master/100k_reads_hiseq/TESTX).
 
+![Mean Quality Scores](docs/source/images/mean-quality-scores.gif)
+
 ## Development
 
 ### Requirements
