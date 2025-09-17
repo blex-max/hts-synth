@@ -1,16 +1,22 @@
+from typing import Literal
 import click
+import uuid
 
 from .reads.read_generator import QualityModel, ReadGenerator
 from .ref.enums import VariantType
 
 
-@click.command()
-@click.argument("reference-sequence")
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+
+@click.command(context_settings=CONTEXT_SETTINGS)
 @click.option(
-    "--reference_position",
+    "-p",
+    "--reference-position",
     default=0,
-    help="The starting position within the reference genome where this read originates.",
+    show_default=True,
     type=int,
+    help="The starting position within the reference genome where this read originates.",
 )
 @click.option(
     "--insertion-probability",
@@ -30,12 +36,32 @@ from .ref.enums import VariantType
     help="The probability that the read generated will include a substitution",
     type=float,
 )
+@click.option(
+    "-f",
+    "--out-format",
+    show_default=True,
+    default="fq",
+    type=click.Choice(["fq", "seq", "qual"]),
+    help="format of the output"
+)
+@click.argument(
+    "n-reads",
+    metavar='NREADS',
+    default=1,
+    type=int,
+)
+@click.argument(
+    "reference-sequence",
+    metavar="REF"
+)
 def cli(
     reference_position: int,
     reference_sequence: str,
     insertion_probability: float,
     deletion_probability: float,
     substitution_probability: float,
+    n_reads: int = 1,
+    out_format: Literal["fq", "seq", "qual"] = "fq"  # should probably use an enum
 ):
     """
     Generate synthetic HTS read data from a reference sequence.
@@ -44,9 +70,6 @@ def cli(
     reference sequence and position. The function applies configurable error
     probabilities for various variant types (insertions, deletions, substitutions)
     to simulate realistic sequencing errors.
-
-    Args:\n
-        REFERENCE_SEQUENCE: The reference DNA sequence to use as the basis for read generation.
 
     Returns:\n
         Outputs the generated read sequence and quality scores to stdout
@@ -59,6 +82,15 @@ def cli(
     }
     generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
 
-    read = generator.generate(reference_position, reference_sequence)
-    click.echo(read.query_sequence)
-    click.echo(read.query_qualities_str)
+    for _ in range(n_reads):
+        read = generator.generate(reference_position, reference_sequence)
+        match out_format:
+            case "fq":
+                click.echo(f"@read-{str(uuid.uuid4())[:16]}")
+                click.echo(read.query_sequence)
+                click.echo('+')
+                click.echo(read.query_qualities_str)
+            case "seq":
+                click.echo(read.query_sequence)
+            case "qual":
+                click.echo(read.query_qualities_str)
