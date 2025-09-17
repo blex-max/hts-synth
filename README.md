@@ -102,5 +102,5 @@ pytest .
 
 ### Authors
 
-- ...
-- Rose Neis - EMBL-EBI (rneis@ebi.ac.uk)
+- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - CONTACT)
+- Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
