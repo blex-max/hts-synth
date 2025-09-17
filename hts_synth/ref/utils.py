@@ -1,8 +1,6 @@
 import re
-from collections.abc import Iterable
 from dataclasses import fields
-from itertools import groupby
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
