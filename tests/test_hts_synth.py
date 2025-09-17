@@ -1,4 +1,3 @@
-
 from click.testing import CliRunner
 
 from hts_synth.hts_synth import cli
@@ -9,7 +8,7 @@ class TestCliInterface:
 
     def setup_method(self):
         """Set up the test runner."""
-        self.runner: CliRunner = CliRunner() # pyright: ignore[reportUninitializedInstanceVariable]
+        self.runner: CliRunner = CliRunner()  # pyright: ignore[reportUninitializedInstanceVariable]
 
     def test_cli_help_shows_available_options(self):
         """Test CLI help to understand available parameters."""
