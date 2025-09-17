@@ -13,7 +13,7 @@ class VariantGenerator:
         Generate a synthetic sequence of variants, simulating the contents of a VCF file.
 
         :param sequence: sequence to mutate
-        :param events: insertions, deletions, substitutions
+        :param events: [insertions, deletions, substitutions]
         """
         self.bases = ["A", "C", "G", "T"]
         self.ref_offset = 0
@@ -52,7 +52,6 @@ class VariantGenerator:
             else:
                 substitution_choices = self.bases
                 substitution_choices.remove(self.sequence[index + self.ref_offset])
-                print(substitution_choices, self.sequence[index + self.ref_offset])
                 return self.sequence[index + self.ref_offset], random.choice(substitution_choices)
         else:
             return self.sequence[index + self.ref_offset], self.sequence[index + self.ref_offset]

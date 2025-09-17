@@ -87,3 +87,8 @@ python -m pytest
 # or
 pytest .
 ```
+
+### Authors
+
+- ...
+- Rose Neis - EMBL-EBI (rneis@ebi.ac.uk)
