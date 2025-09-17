@@ -16,6 +16,7 @@ __pycache__/
 build/
 
 # Data
+plots/
 scratch-data/
 *.fastq
 *.fa*

@@ -17,6 +17,12 @@ Install hts-synth and generate your first synthetic read:
    pip install hts-synth
    hts-synth --substitution-probability 0.02 ATCGATCG
 
+.. image:: /images/hts-synth-fastq-gen2.gif
+   :alt: Example command line usage
+   :width: 600px
+   :align: center
+
+
 The library can be used both as a command-line tool for quick data generation; as a Python library for integration into larger bioinformatics applications or as a faker provider for testing data generation
 
 User Guides

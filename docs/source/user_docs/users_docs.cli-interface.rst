@@ -246,6 +246,12 @@ Quality Scores
 
 The tool automatically generates quality scores for each nucleotide in the synthetic reads. These scores follow standard FASTQ quality encoding and represent the confidence in each base call, simulating the quality scores produced by real sequencing instruments.
 
+Using the NaiveQualModel with WelfordsRunningMean against publicly available data provides the following quality score distribution. The animation below shows the cumulatice mean of the quality sscores showing both the short term variation and the long term trend.
+
+.. image:: ../images/mean-quality-scores.gif
+   :alt: Quality score distribution animation
+   :align: center
+
 Use Cases
 ---------
 

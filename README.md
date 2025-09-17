@@ -31,9 +31,13 @@ ATCGATCGATCG
 !!!!!!!!!!!!
 ```
 
+![Example command line usage](docs/source/images/hts-synth-fastq-gen2.gif)
+
 ## Examples
 
 There are usage examples in ./examples. To successfully run the Jyputer notebook, install development the requirements and acquire a FASTQ file for testing. The one that was tested against contains 25 000 reads, each 100 bps long. See [TESTX_H7YRLADXX_S1_L001_R1_001.fastq](https://github.com/hartwigmedical/testdata/tree/master/100k_reads_hiseq/TESTX).
+
+![Mean Quality Scores](docs/source/images/mean-quality-scores.gif)
 
 ## Development
 
@@ -82,20 +86,30 @@ Basedpyright for typing
 python -m basedpyright
 ```
 
-### Documentation
+### [Documentation](https://blex-max.github.io/hts-synth/)
+Documentation is generated using Sphinx on every commit to the main branch.
 
-To generate the documentation, using Sphinx. Run the following commands:
+#### Updating the documentation
 
-```bash
-cd docs
-make html
-```
+The documentation source files are located in the `docs/source/` directory:
 
-Then open the generated file documentation/build/html/index.html in your browser to view the documentation.
+- **Main documentation files**: `docs/source/` contains reStructuredText (.rst) files
+  - `index.rst` - Main documentation page
+  - `user_docs/` - User documentation pages
+  - `api/` - Auto-generated API documentation
+- **Configuration**: `docs/source/conf.py` - Sphinx configuration file
+- **Static assets**: `docs/source/_static/` - Custom CSS and other static files
+- **Images**: `docs/source/images/` - Documentation images
 
-### Testing
+To update the documentation:
+1. Edit the relevant `.rst` files in `docs/source/`
+2. Add new images to `docs/source/images/`
+3. Update `docs/source/conf.py` for configuration changes
+4. Generate locally to preview changes (see Local Generation below)
+5. Commit your changes - documentation will be automatically updated online
 
-To run unit tests with Pytest
+#### Local Generation
+To generate the documentation locally using Sphinx, run the following commands:
 
 ```sh
 python -m pytest
