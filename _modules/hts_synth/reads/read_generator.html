@@ -184,6 +184,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..ref.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariantType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..ref.generate_variant</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariantGenerator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..ref.reference</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReferenceSegment</span>
 
 
 <div class="viewcode-block" id="QualityModel">
@@ -246,8 +247,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">reference_segment</span><span class="p">:</span> <span class="n">ReferenceSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">quality_model</span><span class="p">:</span> <span class="n">QualityModel</span><span class="p">,</span>
         <span class="n">error_probabilities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">VariantType</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paired</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a ReadGenerator with quality model and error probabilities.</span>
@@ -262,13 +265,16 @@
 <span class="sd">            &gt;&gt;&gt; custom_errors = {VariantType.SUBSTITUTION: 0.02}</span>
 <span class="sd">            &gt;&gt;&gt; generator = ReadGenerator(quality_model, custom_errors)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="p">:</span> <span class="n">ReferenceSegment</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">reference_segment</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">quality_model</span><span class="p">:</span> <span class="n">QualityModel</span> <span class="o">=</span> <span class="n">quality_model</span>
+
         <span class="k">if</span> <span class="n">error_probabilities</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error_probabilities</span> <span class="o">=</span> <span class="n">error_probabilities</span>
 
-<div class="viewcode-block" id="ReadGenerator.generate">
-<a class="viewcode-back" href="../../../api/hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator.generate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reference_position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">reference_sequence</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AlignedSegment</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paired</span> <span class="o">=</span> <span class="n">paired</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AlignedSegment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a single synthetic read with simulated sequencing errors.</span>
 
@@ -297,12 +303,21 @@
 <span class="sd">            &gt;&gt;&gt; read = generator.generate(100, &quot;ATCGATCG&quot;)</span>
 <span class="sd">            &gt;&gt;&gt; print(read.query_sequence)  # Potentially mutated sequence</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get segment sequence if held in class</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="p">)</span> <span class="ow">is</span> <span class="n">ReferenceSegment</span><span class="p">:</span>
+            <span class="n">input_sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="o">.</span><span class="n">sequence</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">input_sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Generator reference segment must be either a &#39;ReferenceSegment&#39; or a str&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Generate numbers of events based on error probabilities dict</span>
         <span class="c1"># [num_insertions, num_deletions, num_substitutions]</span>
         <span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="nb">round</span><span class="p">(</span><span class="n">rate</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">reference_sequence</span><span class="p">))</span> <span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_probabilities</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">rate</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_sequence</span><span class="p">))</span> <span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_probabilities</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="p">]</span>
 
-        <span class="n">variant_generator</span> <span class="o">=</span> <span class="n">VariantGenerator</span><span class="p">(</span><span class="n">reference_sequence</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+        <span class="n">variant_generator</span> <span class="o">=</span> <span class="n">VariantGenerator</span><span class="p">(</span><span class="n">input_sequence</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
 
         <span class="n">read</span> <span class="o">=</span> <span class="n">AlignedSegment</span><span class="p">()</span>
 
@@ -318,21 +333,21 @@
         <span class="c1"># Should this function return a pair of reads for paired end sequencing?</span>
         <span class="c1"># Should this be a seperate function?</span>
 
-        <span class="c1"># read.flag = ?</span>
         <span class="n">read</span><span class="o">.</span><span class="n">query_name</span> <span class="o">=</span> <span class="s2">&quot;synthetic_read/1&quot;</span>
         <span class="n">read</span><span class="o">.</span><span class="n">reference_id</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">read</span><span class="o">.</span><span class="n">reference_start</span> <span class="o">=</span> <span class="n">reference_position</span>
-        <span class="n">read</span><span class="o">.</span><span class="n">next_reference_start</span> <span class="o">=</span> <span class="n">reference_position</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">read</span><span class="o">.</span><span class="n">query_sequence</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="p">)</span> <span class="ow">is</span> <span class="n">ReferenceSegment</span><span class="p">:</span>
+            <span class="n">read</span><span class="o">.</span><span class="n">reference_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="o">.</span><span class="n">start</span>
+            <span class="n">read</span><span class="o">.</span><span class="n">next_reference_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_segment</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">read</span><span class="o">.</span><span class="n">query_sequence</span><span class="p">)</span>
+
+        <span class="n">read</span><span class="o">.</span><span class="n">is_paired</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paired</span>
         <span class="n">read</span><span class="o">.</span><span class="n">mapping_quality</span> <span class="o">=</span> <span class="mi">20</span>
 
-        <span class="k">return</span> <span class="n">read</span></div>
+        <span class="k">return</span> <span class="n">read</span>
 
-
-<div class="viewcode-block" id="ReadGenerator.generate_multiple">
-<a class="viewcode-back" href="../../../api/hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator.generate_multiple">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_multiple</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">reference_position</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">reference_sequence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">AlignedSegment</span><span class="p">]:</span>
+<div class="viewcode-block" id="ReadGenerator.emit_reads">
+<a class="viewcode-back" href="../../../api/hts_synth.reads.html#hts_synth.reads.read_generator.ReadGenerator.emit_reads">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">emit_reads</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">AlignedSegment</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate multiple synthetic reads from the same reference sequence.</span>
 
@@ -356,7 +371,7 @@
 <span class="sd">            &gt;&gt;&gt; len(reads)  # 5</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">reference_position</span><span class="p">,</span> <span class="n">reference_sequence</span><span class="p">)</span></div>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">()</span></div>
 </div>
 
 </pre></div>
