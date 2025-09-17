@@ -1,3 +1,5 @@
+import os
+import sys
 import uuid
 from typing import Literal
 
@@ -5,18 +7,31 @@ import click
 
 from .reads.read_generator import QualityModel, ReadGenerator
 from .ref.enums import VariantType
+from .ref.reference import Reference
 
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.option(
-    "-p",
-    "--reference-position",
+    "-c",
+    "--reference-chrom",
+    type=str,
+    help="The chromosome within the reference genome where this read originates.",
+)
+@click.option(
+    "-s",
+    "--reference-start",
     default=0,
     show_default=True,
     type=int,
     help="The starting position within the reference genome where this read originates.",
+)
+@click.option(
+    "-e",
+    "--reference-end",
+    type=int,
+    help="The end position within the reference genome where this read originates.",
 )
 @click.option(
     "--insertion-probability",
@@ -55,7 +70,9 @@ CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
     metavar="REF",
 )
 def cli(
-    reference_position: int,
+    reference_chrom: str | None,
+    reference_start: int,
+    reference_end: int,
     reference_sequence: str,
     insertion_probability: float,
     deletion_probability: float,
@@ -80,10 +97,21 @@ def cli(
         VariantType.DELETION: deletion_probability,
         VariantType.SUBSTITUTION: substitution_probability,
     }
-    generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
 
-    for _ in range(n_reads):
-        read = generator.generate(reference_position, reference_sequence)
+    if os.path.exists(reference_sequence):
+        reference = Reference(reference_sequence)
+
+        if not reference_chrom or not reference_end:
+            click.echo("", err=True)
+            sys.exit(1)
+
+        reference_segment = reference.get_sequence(reference_chrom, reference_start, reference_end)
+
+        generator = ReadGenerator(reference_segment, quality_model, error_probabilities)
+    else: 
+        generator = ReadGenerator(reference_sequence, quality_model, error_probabilities)
+
+    for read in generator.emit_reads(n_reads):
         match out_format:
             case "fq":
                 click.echo(f"@read-{str(uuid.uuid4())[:16]}")
