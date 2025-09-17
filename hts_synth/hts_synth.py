@@ -1,12 +1,12 @@
-from typing import Literal
-import click
 import uuid
+from typing import Literal
+
+import click
 
 from .reads.read_generator import QualityModel, ReadGenerator
 from .ref.enums import VariantType
 
-
-CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
@@ -42,17 +42,17 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
     show_default=True,
     default="fq",
     type=click.Choice(["fq", "seq", "qual"]),
-    help="format of the output"
+    help="format of the output",
 )
 @click.argument(
     "n-reads",
-    metavar='NREADS',
+    metavar="NREADS",
     default=1,
     type=int,
 )
 @click.argument(
     "reference-sequence",
-    metavar="REF"
+    metavar="REF",
 )
 def cli(
     reference_position: int,
@@ -61,7 +61,7 @@ def cli(
     deletion_probability: float,
     substitution_probability: float,
     n_reads: int = 1,
-    out_format: Literal["fq", "seq", "qual"] = "fq"  # should probably use an enum
+    out_format: Literal["fq", "seq", "qual"] = "fq",  # should probably use an enum
 ):
     """
     Generate synthetic HTS read data from a reference sequence.
@@ -88,7 +88,7 @@ def cli(
             case "fq":
                 click.echo(f"@read-{str(uuid.uuid4())[:16]}")
                 click.echo(read.query_sequence)
-                click.echo('+')
+                click.echo("+")
                 click.echo(read.query_qualities_str)
             case "seq":
                 click.echo(read.query_sequence)
