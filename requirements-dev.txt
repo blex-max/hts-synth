@@ -3,4 +3,3 @@ matplotlib~=3.10
 ruff
 sphinx>=8.2.3
 sphinx_rtd_theme>=3.0.2
-matplotlib

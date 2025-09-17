@@ -22,10 +22,6 @@ def parse_opt_int_group(m: re.Match[str], i: int) -> int:
     return int(g) if g else 0
 
 
-def safe_group_by(a: Iterable[Any], k: Callable[[Any], int]):
-    return groupby(sorted(a, key=k), key=k)
-
-
 def has_duplicates(items: list[str]) -> bool:
     return len(set(items)) != len(items)
 

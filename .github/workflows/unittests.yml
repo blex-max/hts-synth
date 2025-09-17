@@ -18,6 +18,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    # Required for Pysam compilation and genomic file format support
+    # These dependencies are needed for: compression libraries (zlib, bzip2, lzma),
+    # build tools, and remote file access capabilities
     - name: Install system dependencies
       run: |
         sudo apt-get update
