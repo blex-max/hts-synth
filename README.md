@@ -3,7 +3,6 @@
 [![license](https://img.shields.io/badge/License-MIT-a51931?style=for-the-badge)](LICENSE.txt)
 [![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=flat&logo=readthedocs)](https://blex-max.github.io/hts-synth/)
 
-
 # hts-synth
 
 Biodev Hackathon 2025 - constrained generation of HTS data for testing and exploration.
