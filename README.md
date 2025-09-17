@@ -80,7 +80,7 @@ Basedpyright for typing
 python -m basedpyright
 ```
 
-### Documentation
+### [Documentation](https://blex-max.github.io/hts-synth/)
 
 To generate the documentation, using Sphinx. Run the following commands:
 
