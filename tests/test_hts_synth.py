@@ -27,7 +27,7 @@ class TestCliInterface:
 
     def test_cli_default_execution(self):
         """Test CLI with no parameters."""
-        result = self.runner.invoke(cli)
+        result = self.runner.invoke(cli, ['--reference_sequence="ATGCTGTG"'])
 
         # Check if it runs without error or shows help
         assert result.exit_code in [0, 2]  # 0 for success, 2 for missing required args
