@@ -45,12 +45,10 @@ def cli(
     probabilities for various variant types (insertions, deletions, substitutions)
     to simulate realistic sequencing errors.
 
-    Args:
-        reference_position: The starting genomic position for the read (default: 100)
-        reference_sequence: The DNA reference sequence string (default: "ATGCTGTG")
-        error_probabilities: Optional mapping of variant types to error rates
+    Args:\n
+        REFERENCE_SEQUENCE: The reference DNA sequence to use as the basis for read generation.
 
-    Returns:
+    Returns:\n
         Outputs the generated read sequence and quality scores to stdout
     """
     quality_model = QualityModel()
