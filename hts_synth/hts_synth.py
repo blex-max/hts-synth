@@ -50,16 +50,14 @@ def cli(
 
     Returns:\n
         Outputs the generated read sequence and quality scores to stdout
-    """
+    """  # noqa: D301
     quality_model = QualityModel()
     error_probabilities = {
         VariantType.INSERTION: insertion_probability,
         VariantType.DELETION: deletion_probability,
         VariantType.SUBSTITUTION: substitution_probability,
     }
-    generator = ReadGenerator(
-        quality_model=quality_model, error_probabilities=error_probabilities
-    )
+    generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
 
     read = generator.generate(reference_position, reference_sequence)
     click.echo(read.query_sequence)
