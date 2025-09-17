@@ -21,6 +21,7 @@ class VariantGenerator:
         events (Sequence[int]): Number of each variant type to generate.
         ref_sequence (str): The reference genomic sequence.
     """
+
     def __init__(self, ref_sequence: str, events: Sequence[int]):
         """
         Initialise a VariantGenerator with a reference sequence and event counts.

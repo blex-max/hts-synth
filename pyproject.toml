@@ -72,7 +72,7 @@ convention = "pep257"
 
 [tool.pyright]
 failOnWarnings = false
-ignore = ["scratch-api.py"]
+ignore = ["scratch-api.py", 'examples/*']
 reportAny = false
 reportExplicitAny = false
 reportUnknownArgumentType = false
