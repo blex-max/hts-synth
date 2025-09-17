@@ -24,9 +24,11 @@ The synthesising tool can be used both as a Faker provider for unit tests and as
 ```sh
 $ hts-synth --help
 
-$ hts-synth --length=20
-TTCATCTAAAATATATGAAC
-klPsyRcqfervojkGHICH
+$ hts-synth ATCGATCGATCG
+@read-d094e5d1-cf29-4b
+ATCGATCGATCG
++
+!!!!!!!!!!!!
 ```
 
 ![Example command line usage](docs/source/images/hts-synth-fastq-gen2.gif)
@@ -109,7 +111,19 @@ To update the documentation:
 #### Local Generation
 To generate the documentation locally using Sphinx, run the following commands:
 
-```bash
-cd docs
-make html
+```sh
+python -m pytest
+# or
+pytest .
 ```
+
+### Authors
+
+- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
+- Helen Schuilenburg - Wellcome Sanger Institue (hs21 (at) sanger.ac.uk)
+- Hitham Hassan - Wellcome Sanger Institue (hh12 (at) sanger.ac.uk)
+- Luca Barbon - Wellcome Sanger Institue (lb29 (at) sanger.ac.uk)
+- Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
+- Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
+- Tom Drever - Wellcome Sanger Institue (td14 (at) sanger.ac.uk)
+- Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)

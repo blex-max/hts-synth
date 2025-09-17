@@ -14,11 +14,3 @@ Quality Model
    :members:
    :show-inheritance:
    :undoc-members:
-
-Read Model
----------------------------------------------
-
-.. automodule:: hts_synth.models.read
-   :members:
-   :show-inheritance:
-   :undoc-members:

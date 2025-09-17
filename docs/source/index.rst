@@ -15,7 +15,7 @@ Install hts-synth and generate your first synthetic read:
 .. code-block:: bash
 
    pip install hts-synth
-   hts-synth ATCGATCG --substitution-probability 0.02
+   hts-synth --substitution-probability 0.02 ATCGATCG
 
 .. image:: /images/hts-synth-fastq-gen2.gif
    :alt: Example command line usage

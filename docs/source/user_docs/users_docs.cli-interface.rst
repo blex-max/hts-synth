@@ -39,25 +39,37 @@ Generate 5 reads:
 
 .. code-block:: bash
 
-   hts-synth 5 ATCGATCGATCG
+   hts-synth ATCGATCGATCG 5
 
 Generate reads with custom error probabilities:
 
 .. code-block:: bash
 
-   hts-synth --insertion-probability 0.05 --deletion-probability 0.03 10 ATCGATCGATCG
+   hts-synth --insertion-probability 0.05 --deletion-probability 0.03 ATCGATCGATCG 10
 
 Command Options
 ---------------
 
-Position Options
+Reference position Options
 ~~~~~~~~~~~~~~~~
 
-``-p, --reference-position INTEGER``
+``-c, --reference-chrom STR``
+   The chromosome within the reference genome where this read originates.
+
+   * **Example:** ``--reference-chrom chr1``
+
+
+``-s, --reference-start INTEGER``
    The starting position within the reference genome where this read originates.
 
    * **Default:** 0
-   * **Example:** ``--reference-position 1000``
+   * **Example:** ``--reference-start 1000``
+
+``-s, --reference-end INTEGER``
+   The end position within the reference genome where this read originates.
+
+   * **Default:** 0
+   * **Example:** ``--reference-end 1010``
 
 Error Probability Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,19 +119,19 @@ Help Option
 Arguments
 ---------
 
-``NREADS``
-   Number of reads to generate (optional, default: 1).
-
-   * **Type:** Integer
-   * **Default:** 1
-   * **Example:** ``10`` (generates 10 reads)
-
 ``REF``
    Reference sequence from which to generate synthetic reads (required).
 
    * **Type:** String
    * **Format:** DNA sequence using standard nucleotide letters (A, T, C, G)
    * **Example:** ``ATCGATCGATCGATCG``
+
+``NREADS``
+   Number of reads to generate (optional, default: 1).
+
+   * **Type:** Integer
+   * **Default:** 1
+   * **Example:** ``10`` (generates 10 reads)
 
 Output Formats
 --------------
@@ -177,7 +189,7 @@ Generate 10 reads:
 
 .. code-block:: bash
 
-   hts-synth 10 ATCGATCGATCGATCG
+   hts-synth ATCGATCGATCGATCG 10
 
 Advanced Examples
 ~~~~~~~~~~~~~~~~~
@@ -189,13 +201,13 @@ Generate reads with high error rates:
    hts-synth --insertion-probability 0.1 \
              --deletion-probability 0.08 \
              --substitution-probability 0.15 \
-             5 ATCGATCGATCGATCG
+             ATCGATCGATCGATCG 5
 
 Generate reads starting from a specific reference position:
 
 .. code-block:: bash
 
-   hts-synth --reference-position 1000 10 ATCGATCGATCGATCG
+   hts-synth --reference-start 1000 ATCGATCGATCGATCG 10 
 
 Output only sequences (useful for piping):
 
@@ -208,10 +220,10 @@ Combine with shell commands:
 .. code-block:: bash
 
    # Count the number of reads generated
-   hts-synth --out-format seq 100 ATCGATCGATCGATCG | wc -l
+   hts-synth --out-format seq ATCGATCGATCGATCG 100 | wc -l
 
    # Save to file
-   hts-synth 1000 ATCGATCGATCGATCG > synthetic_reads.fastq
+   hts-synth ATCGATCGATCGATCG 1000 > synthetic_reads.fastq
 
 Error Simulation
 ----------------

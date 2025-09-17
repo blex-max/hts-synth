@@ -60,14 +60,14 @@ CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
     help="format of the output",
 )
 @click.argument(
+    "reference-sequence",
+    metavar="REF",
+)
+@click.argument(
     "n-reads",
     metavar="NREADS",
     default=1,
-    type=int,
-)
-@click.argument(
-    "reference-sequence",
-    metavar="REF",
+    type=int
 )
 def cli(
     reference_chrom: str | None,
