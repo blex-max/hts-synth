@@ -103,6 +103,10 @@ pytest .
 ### Authors
 
 - Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
+- Helen Schuilenburg - Wellcome Sanger Institue (hs21 (at) sanger.ac.uk)
+- Hitham Hassan - Wellcome Sanger Institue (hh12 (at) sanger.ac.uk)
+- Luca Barbon - Wellcome Sanger Institue (lb29 (at) sanger.ac.uk)
 - Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
 - Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
+- Tom Drever - Wellcome Sanger Institue (td14 (at) sanger.ac.uk)
 - Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)
