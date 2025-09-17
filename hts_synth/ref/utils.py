@@ -1,6 +1,6 @@
 import re
 from dataclasses import fields
-from typing import TypeVar
+from typing import Any, TypeVar
 
 dna_re = re.compile("^[ACGT]*$")
 dna_complement_tr_table = str.maketrans("ACGT", "TGCA")
@@ -24,11 +24,11 @@ def has_duplicates(items: list[str]) -> bool:
     return len(set(items)) != len(items)
 
 
-def get_dataclass_fields(cls) -> list[str]:
+def get_dataclass_fields(cls: Any) -> list[str]:
     return [f.name for f in fields(cls)]
 
 
-def get_not_none(it):
+def get_not_none(it: Any):
     return [x for x in it if x is not None]
 
 
@@ -49,7 +49,9 @@ def get_codon_offset_complement(offset: int) -> int:
 
 
 def get_cds_ext_3_length(frame: int, length: int) -> int:
-    """Calculate how many nucleotides are missing from the last codon given the reading frame and the length of the sequence."""
+    """
+    Calculate how many nucleotides are missing from the last codon based on the length of the sequence.
+    """
     return (3 - (length + frame) % 3) % 3
 
 
@@ -66,7 +68,7 @@ def get_end(start: int, length: int) -> int:
     return start + clamp_non_negative(length - 1)
 
 
-def is_unique_ascending(a: list[int]) -> bool:
+def is_unique_ascending(a: list[Any]) -> bool:
     n = len(a)
     if n == 0:
         return True

@@ -1,27 +1,13 @@
-import random
-import string
-
 from faker.providers import BaseProvider
 from pysam import AlignedSegment
 
-from hts_synth.wrappers.sam_wrapper import create_synthetic_read
-
-
-def generate_read(length: int = 10) -> AlignedSegment:
-    # TODO: Replace with actual read generation method once implemented
-    seq = "".join(random.choices("ACGT", k=length))
-    qual = "".join(random.choices(string.ascii_letters, k=length))
-
-    return create_synthetic_read(seq, qual)
+from ..reads.read_generator import QualityModel, ReadGenerator
+from ..ref.enums import VariantType
 
 
 class ReadProvider(BaseProvider):
     """
-    Example scaffolding for a custom Faker provider that generates synthetic reads.
-
-    This class demonstrates the basic structure needed to create a custom provider
-    for the Faker library. It extends BaseProvider and implements a single method
-    to generate Read objects.
+    Custom Faker provider that generates synthetic reads.
 
     Example:
         >>> from faker import Faker
@@ -32,5 +18,14 @@ class ReadProvider(BaseProvider):
         'ACGTACGTAC'
     """
 
-    def read(self, length: int = 10) -> AlignedSegment:
-        return generate_read(length=length)
+    def read(
+        self,
+        reference_position: int = 100,
+        reference_sequence: str = "ATGCTGTG",
+        error_probabilities: dict[VariantType, float] | None = None,
+    ) -> AlignedSegment:
+        quality_model = QualityModel()
+        generator = ReadGenerator(
+            quality_model=quality_model, error_probabilities=error_probabilities
+        )
+        return generator.generate(reference_position, reference_sequence)

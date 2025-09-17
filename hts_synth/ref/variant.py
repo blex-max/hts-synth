@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import NoReturn
+from typing import NoReturn, override
 
-from ..ref.enums import VariantType
-from ..ref.utils import get_end
+from .enums import VariantType
+from .utils import get_end
 
 
 def _raise_no_ref_alt() -> NoReturn:
@@ -17,6 +17,7 @@ class Variant:
     ref: str
     alt: str
 
+    @override
     def __str__(self) -> str:
         return (
             f"{self.pos}del{self.ref}"
@@ -50,6 +51,7 @@ class Variant:
     def type(self) -> VariantType:
         if self.ref:
             return VariantType.SUBSTITUTION if self.alt else VariantType.DELETION
+
         if self.alt:
             return VariantType.INSERTION
         _raise_no_ref_alt()

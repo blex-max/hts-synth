@@ -16,7 +16,7 @@ class MutatedSequenceProvider(BaseProvider):
         :param events: number of insertions, deletions, and substitutions to apply
         :return: mutated sequence string
         """
-        generator = generate_variant.VariantGenerator(sequence=sequence, events=events)
+        generator = generate_variant.VariantGenerator(ref_sequence=sequence, events=events)
         variants = generator.generate_random_variant_sequence()
         alt_length = len(variants)
         return seq_converter.apply_variants(
