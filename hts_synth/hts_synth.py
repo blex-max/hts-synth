@@ -19,11 +19,22 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
     help="The starting position within the reference genome where this read originates.",
 )
 @click.option(
-    "--error-probabilities",
-    default=None,  # TODO: surface the default
-    help="""JSON string mapping variant type numbers to error probabilities, 
-    e.g., \'{"0": 0.01, "1": 0.01, "2": 0.02}\' 
-    (0=INSERTION, 1=DELETION, 2=SUBSTITUTION)""",
+    "--insertion-probability",
+    default=0.01,
+    help="The probability that the read generated will include an insertion",
+    type=float,
+)
+@click.option(
+    "--deletion-probability",
+    default=0.01,
+    help="The probability that the read generated will include an deletion",
+    type=float,
+)
+@click.option(
+    "--substitution-probability",
+    default=0.02,
+    help="The probability that the read generated will include a substitution",
+    type=float,
 )
 @click.option(
     "-f",
@@ -46,7 +57,9 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 def cli(
     reference_position: int,
     reference_sequence: str,
-    error_probabilities: dict[VariantType, float] | None = None,
+    insertion_probability: float,
+    deletion_probability: float,
+    substitution_probability: float,
     n_reads: int = 1,
     out_format: Literal["fq", "seq", "qual"] = "fq"  # should probably use an enum
 ):
@@ -58,15 +71,15 @@ def cli(
     probabilities for various variant types (insertions, deletions, substitutions)
     to simulate realistic sequencing errors.
 
-    Args:
-        reference_position: The starting genomic position for the read (default: 0)
-        reference_sequence: The DNA reference sequence string
-        error_probabilities: Optional mapping of variant types to error rates
-
-    Returns:
+    Returns:\n
         Outputs the generated read sequence and quality scores to stdout
-    """
+    """  # noqa: D301
     quality_model = QualityModel()
+    error_probabilities = {
+        VariantType.INSERTION: insertion_probability,
+        VariantType.DELETION: deletion_probability,
+        VariantType.SUBSTITUTION: substitution_probability,
+    }
     generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
 
     for _ in range(n_reads):
