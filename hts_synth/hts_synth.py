@@ -5,10 +5,7 @@ from .ref.enums import VariantType
 
 
 @click.command()
-@click.argument(
-    "reference_sequence",
-    help="The reference DNA sequence to use as the basis for read generation.",
-)
+@click.argument("reference-sequence")
 @click.option(
     "--reference_position",
     default=0,
