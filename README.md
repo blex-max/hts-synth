@@ -1,6 +1,8 @@
 [![python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python&logoColor=FFD43B)](https://docs.python.org/3.12/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-D7FF64?style=for-the-badge&logo=ruff)](https://docs.astral.sh/ruff/)
 [![license](https://img.shields.io/badge/License-MIT-a51931?style=for-the-badge)](LICENSE.txt)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=flat&logo=readthedocs)](https://blex-max.github.io/hts-synth/)
+
 
 # hts-synth
 
