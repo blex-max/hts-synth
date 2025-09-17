@@ -13,3 +13,9 @@ __pycache__/
 .ruff_cache/
 .pytest_cahce/
 *.py[cod]
+build/
+
+# Data
+scratch-data/
+*.fastq
+
