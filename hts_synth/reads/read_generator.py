@@ -79,7 +79,9 @@ class ReadGenerator:
         if error_probabilities:
             self.error_probabilities = error_probabilities
 
-    def generate(self, reference_position: int, reference_sequence: str) -> AlignedSegment:
+    def generate(
+        self, reference_position: int, reference_sequence: str
+    ) -> AlignedSegment:
         """
         Generate a single synthetic read with simulated sequencing errors.
 
@@ -110,7 +112,8 @@ class ReadGenerator:
         """
         # [num_insertions, num_deletions, num_substitutions]
         events = [
-            round(rate * len(reference_sequence)) for rate in self.error_probabilities.values()
+            round(rate * len(reference_sequence))
+            for rate in self.error_probabilities.values()
         ]
 
         variant_generator = VariantGenerator(reference_sequence, events)
@@ -118,11 +121,14 @@ class ReadGenerator:
         read = AlignedSegment()
 
         read.query_sequence = "".join(
-            variant.alt for variant in variant_generator.generate_random_variant_sequence()
+            variant.alt
+            for variant in variant_generator.generate_random_variant_sequence()
         )
-        print(self.quality_model.get_quality_scores(len(read.query_sequence)))
+
         read.query_qualities_str = pysam.qualities_to_qualitystring(
-            qualities=self.quality_model.get_quality_scores(len(read.query_sequence))  # pyright: ignore[reportArgumentType]
+            qualities=self.quality_model.get_quality_scores(
+                len(read.query_sequence)
+            )  # pyright: ignore[reportArgumentType]
         )
 
         # TODO actually generate read properties - meaningful name and correct flag

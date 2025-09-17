@@ -59,7 +59,9 @@ def cli(
         VariantType.DELETION: deletion_probability,
         VariantType.SUBSTITUTION: substitution_probability,
     }
-    generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
+    generator = ReadGenerator(
+        quality_model=quality_model, error_probabilities=error_probabilities
+    )
 
     read = generator.generate(reference_position, reference_sequence)
     click.echo(read.query_sequence)
