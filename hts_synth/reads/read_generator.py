@@ -63,7 +63,7 @@ class ReadGenerator:
         reference_segment: ReferenceSegment | str,
         quality_model: QualityModel,
         error_probabilities: dict[VariantType, float] | None = None,
-        paired: bool = True
+        paired: bool = True,
     ):
         """
         Initialize a ReadGenerator with quality model and error probabilities.
@@ -122,13 +122,13 @@ class ReadGenerator:
         elif type(self.reference_segment) is str:
             input_sequence = self.reference_segment
         else:
-            raise ValueError("Generator reference segment must be either a 'ReferenceSegment' or a str")
+            raise ValueError(
+                "Generator reference segment must be either a 'ReferenceSegment' or a str"
+            )
 
         # Generate numbers of events based on error probabilities dict
         # [num_insertions, num_deletions, num_substitutions]
-        events = [
-            round(rate * len(input_sequence)) for rate in self.error_probabilities.values()
-        ]
+        events = [round(rate * len(input_sequence)) for rate in self.error_probabilities.values()]
 
         variant_generator = VariantGenerator(input_sequence, events)
 

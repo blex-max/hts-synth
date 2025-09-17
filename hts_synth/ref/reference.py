@@ -15,25 +15,29 @@ class ReferenceSegment:
 class Reference:
     def __init__(self, fasta_path: str):
         """
-        Initialise a Reference to hold reference information
+        Initialise a Reference to hold reference information.
         """
         self.fasta = pysam.FastaFile(fasta_path)
 
     def get_sequence(self, chrom: str, start: int, end: int):
         """
-        Returns a ReferenceSegment object.
         Coordinates are 0-based, end-exclusive.
+
+        Returns a ReferenceSegment object.
         """
         seq = self.fasta.fetch(chrom, start, end)
         return ReferenceSegment(chrom, start, end, seq)
-    
+
     def get_mutated_sequence(self, chrom: str, start: int, end: int, events: list):
         """
-        Returns a ReferenceSegment object.
         Coordinates are 0-based, end-exclusive.
+
+        Returns a ReferenceSegment object.
         """
         if len(events) != 3:
-            raise ValueError("Events should contain 3 values - number of insertions, number of deletions, number of substitutions")
+            raise ValueError(
+                "Events should contain 3 values - number of insertions, number of deletions, number of substitutions"
+            )
         num_ins, num_del, num_sub = events
 
         original_length = end - start
@@ -54,7 +58,12 @@ class Reference:
 
         variants = generator.generate_random_variant_sequence()
 
-        modified_segment_sequence = apply_variants(ref_start=0, ref_seq=full_reference_sequence, alt_length=len(variants) + length_change, variants=variants)
+        modified_segment_sequence = apply_variants(
+            ref_start=0,
+            ref_seq=full_reference_sequence,
+            alt_length=len(variants) + length_change,
+            variants=variants,
+        )
 
         modified_segment_sequence = modified_segment_sequence[:original_length]
 
