@@ -1,6 +1,8 @@
 import pysam
+
 from ..ref.generate_variant import VariantGenerator
-from ..ref.seq_converter import  apply_variants
+from ..ref.seq_converter import apply_variants
+
 
 class ReferenceSegment:
     def __init__(self, chrom: str, start: int, end: int, sequence: str):
@@ -31,7 +33,7 @@ class Reference:
         Coordinates are 0-based, end-exclusive.
         """
         if len(events) != 3:
-            raise ValueError(f"Events should contain 3 values - number of insertions, number of deletions, number of substitutions")
+            raise ValueError("Events should contain 3 values - number of insertions, number of deletions, number of substitutions")
         num_ins, num_del, num_sub = events
 
         original_length = end - start

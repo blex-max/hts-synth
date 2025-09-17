@@ -116,11 +116,10 @@ class ReadGenerator:
             >>> read = generator.generate(100, "ATCGATCG")
             >>> print(read.query_sequence)  # Potentially mutated sequence
         """
-
         # Get segment sequence if held in class
-        if type(self.reference_segment) == ReferenceSegment:
+        if type(self.reference_segment) is ReferenceSegment:
             input_sequence = self.reference_segment.sequence
-        elif type(self.reference_segment) == str:
+        elif type(self.reference_segment) is str:
             input_sequence = self.reference_segment
         else:
             raise ValueError("Generator reference segment must be either a 'ReferenceSegment' or a str")
@@ -150,7 +149,7 @@ class ReadGenerator:
         read.query_name = "synthetic_read/1"
         read.reference_id = 0
 
-        if type(self.reference_segment) == ReferenceSegment:
+        if type(self.reference_segment) is ReferenceSegment:
             read.reference_start = self.reference_segment.start
             read.next_reference_start = self.reference_segment.start + len(read.query_sequence)
 
