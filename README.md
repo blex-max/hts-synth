@@ -46,10 +46,22 @@ From the repo's base directory
 
 ```sh
 pyenv install 3.12
-python -m venv .venv
+python3 -m venv .venv
 source ./.venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
+```
+
+## Contributing
+
+The followng checks are automatically run by pre-commit.
+If this is the first time you're commiting to this repo, ensure your pre-commit is configured.
+
+Note: you will need to have an SSH public keyadded to your GitHub profile.
+
+```bash
+source ./.venv/bin/activate
+pre-commit
 ```
 
 ### Linting and Typing
@@ -90,5 +102,11 @@ pytest .
 
 ### Authors
 
-- ...
-- Rose Neis - EMBL-EBI (rneis@ebi.ac.uk)
+- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
+- Helen Schuilenburg - Wellcome Sanger Institue (hs21 (at) sanger.ac.uk)
+- Hitham Hassan - Wellcome Sanger Institue (hh12 (at) sanger.ac.uk)
+- Luca Barbon - Wellcome Sanger Institue (lb29 (at) sanger.ac.uk)
+- Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
+- Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
+- Tom Drever - Wellcome Sanger Institue (td14 (at) sanger.ac.uk)
+- Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)

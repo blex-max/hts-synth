@@ -6,13 +6,12 @@ hts-synth API Reference
    :show-inheritance:
    :undoc-members:
 
-Modules
------------
-
 .. toctree::
    :maxdepth: 2
 
+   hts_synth.models
    hts_synth.providers
    hts_synth.reads
    hts_synth.ref
+   hts_synth.utils
    hts_synth.wrappers

@@ -138,7 +138,7 @@ class ReadGenerator:
         read.query_sequence = "".join(
             variant.alt for variant in variant_generator.generate_random_variant_sequence()
         )
-        print(self.quality_model.get_quality_scores(len(read.query_sequence)))
+
         read.query_qualities_str = pysam.qualities_to_qualitystring(
             qualities=self.quality_model.get_quality_scores(len(read.query_sequence))  # pyright: ignore[reportArgumentType]
         )
