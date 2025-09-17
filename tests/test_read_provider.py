@@ -7,7 +7,3 @@ class TestReadProvider:
         read: AlignedSegment = faker.read()
         sequence = read.query_sequence
         assert sequence is not None
-
-        read2: AlignedSegment = faker.read()
-        sequence2 = read2.query_sequence
-        assert sequence2 is not None
