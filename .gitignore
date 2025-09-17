@@ -5,9 +5,6 @@ hts_synth.egg-info/
 # Virtual environment
 *venv*/
 
-# Documentation 
-docs/build/*
-
 # Python
 __pycache__/
 .ruff_cache/
