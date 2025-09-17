@@ -24,9 +24,11 @@ The synthesising tool can be used both as a Faker provider for unit tests and as
 ```sh
 $ hts-synth --help
 
-$ hts-synth --length=20
-TTCATCTAAAATATATGAAC
-klPsyRcqfervojkGHICH
+$ hts-synth ATCGATCGATCG
+@read-d094e5d1-cf29-4b
+ATCGATCGATCG
++
+!!!!!!!!!!!!
 ```
 
 ## Examples
