@@ -5,27 +5,40 @@ from .ref.enums import VariantType
 
 
 @click.command()
-@click.option(
-    "--reference_position",
-    default=100,
-    help="The starting position within the reference genome where this read originates.",
-)
-@click.option(
-    "--reference_sequence",
-    default=None,
+@click.argument(
+    "reference_sequence",
     help="The reference DNA sequence to use as the basis for read generation.",
 )
 @click.option(
-    "--error_probabilities",
-    default=None,
-    help="""JSON string mapping variant type numbers to error probabilities, 
-    e.g., \'{"0": 0.01, "1": 0.01, "2": 0.02}\' 
-    (0=INSERTION, 1=DELETION, 2=SUBSTITUTION)""",
+    "--reference_position",
+    default=0,
+    help="The starting position within the reference genome where this read originates.",
+    type=int,
+)
+@click.option(
+    "--insertion-probability",
+    default=0.01,
+    help="The probability that the read generated will include an insertion",
+    type=float,
+)
+@click.option(
+    "--deletion-probability",
+    default=0.01,
+    help="The probability that the read generated will include an deletion",
+    type=float,
+)
+@click.option(
+    "--substitution-probability",
+    default=0.02,
+    help="The probability that the read generated will include a substitution",
+    type=float,
 )
 def cli(
     reference_position: int,
     reference_sequence: str,
-    error_probabilities: dict[VariantType, float] | None = None,
+    insertion_probability: float,
+    deletion_probability: float,
+    substitution_probability: float,
 ):
     """
     Generate synthetic HTS read data from a reference sequence.
@@ -44,7 +57,14 @@ def cli(
         Outputs the generated read sequence and quality scores to stdout
     """
     quality_model = QualityModel()
-    generator = ReadGenerator(quality_model=quality_model, error_probabilities=error_probabilities)
+    error_probabilities = {
+        VariantType.INSERTION: insertion_probability,
+        VariantType.DELETION: deletion_probability,
+        VariantType.SUBSTITUTION: substitution_probability,
+    }
+    generator = ReadGenerator(
+        quality_model=quality_model, error_probabilities=error_probabilities
+    )
 
     read = generator.generate(reference_position, reference_sequence)
     click.echo(read.query_sequence)
