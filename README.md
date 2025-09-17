@@ -104,4 +104,5 @@ pytest .
 
 - Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - CONTACT)
 - Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
-- Stephen N. Hulme - Sanger (stephen.hulme (at) sanger.ac.uk)
+- Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
+- Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)
