@@ -108,7 +108,7 @@ def cli(
         reference_segment = reference.get_sequence(reference_chrom, reference_start, reference_end)
 
         generator = ReadGenerator(reference_segment, quality_model, error_probabilities)
-    else: 
+    else:
         generator = ReadGenerator(reference_sequence, quality_model, error_probabilities)
 
     for read in generator.emit_reads(n_reads):

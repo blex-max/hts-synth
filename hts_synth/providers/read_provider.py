@@ -27,7 +27,7 @@ class ReadProvider(BaseProvider):
         quality_model = QualityModel()
         generator = ReadGenerator(
             reference_segment=reference_sequence,
-            quality_model=quality_model, 
-            error_probabilities=error_probabilities
+            quality_model=quality_model,
+            error_probabilities=error_probabilities,
         )
         return next(generator.emit_reads(1))
