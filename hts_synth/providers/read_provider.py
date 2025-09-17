@@ -3,6 +3,7 @@ from pysam import AlignedSegment
 
 from ..reads.read_generator import QualityModel, ReadGenerator
 from ..ref.enums import VariantType
+from ..ref.reference import ReferenceSegment
 
 
 class ReadProvider(BaseProvider):
@@ -20,12 +21,13 @@ class ReadProvider(BaseProvider):
 
     def read(
         self,
-        reference_position: int = 100,
-        reference_sequence: str = "ATGCTGTG",
+        reference_sequence: ReferenceSegment | str = "ATGCTGTG",
         error_probabilities: dict[VariantType, float] | None = None,
     ) -> AlignedSegment:
         quality_model = QualityModel()
         generator = ReadGenerator(
-            quality_model=quality_model, error_probabilities=error_probabilities
+            reference_segment=reference_sequence,
+            quality_model=quality_model, 
+            error_probabilities=error_probabilities
         )
-        return generator.generate(reference_position, reference_sequence)
+        return next(generator.emit_reads(1))

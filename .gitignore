@@ -18,4 +18,4 @@ build/
 # Data
 scratch-data/
 *.fastq
-
+*.fa*
