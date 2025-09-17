@@ -391,6 +391,8 @@ hts-synth<span class="w"> </span><span class="m">1000</span><span class="w"> </s
 <section id="quality-scores">
 <h2>Quality Scores<a class="headerlink" href="#quality-scores" title="Link to this heading"></a></h2>
 <p>The tool automatically generates quality scores for each nucleotide in the synthetic reads. These scores follow standard FASTQ quality encoding and represent the confidence in each base call, simulating the quality scores produced by real sequencing instruments.</p>
+<p>Using the NaiveQualModel with WelfordsRunningMean against publicly available data provides the following quality score distribution. The animation below shows the cumulatice mean of the quality sscores showing both the short term variation and the long term trend.</p>
+<img alt="Quality score distribution animation" class="align-center" src="../_images/mean-quality-scores.gif" />
 </section>
 <section id="use-cases">
 <h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
