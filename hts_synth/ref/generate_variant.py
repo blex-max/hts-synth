@@ -16,12 +16,11 @@ class VariantGenerator:
     synthetic data generation in bioinformatics applications.
 
     Attributes:
-        bases (List[str]): Available DNA bases for variant generation.
+        bases (list[str]): Available DNA bases for variant generation.
         ref_offset (int): Tracking offset for reference sequence position adjustments.
         events (Sequence[int]): Number of each variant type to generate.
         ref_sequence (str): The reference genomic sequence.
     """
-
     def __init__(self, ref_sequence: str, events: Sequence[int]):
         """
         Initialise a VariantGenerator with a reference sequence and event counts.
@@ -56,7 +55,6 @@ class VariantGenerator:
                           Each variant contains position, reference, and alternative sequences.
 
         Note:
-            - Uses numpy random seed of 0 for reproducible results
             - The total sequence length is calculated as the maximum of reference length
               and alternative length (ref_length + insertions - deletions)
             - Event positions are randomly distributed across the total length
@@ -106,7 +104,7 @@ class VariantGenerator:
               - First num_insertions positions are insertions
               - Next num_deletions positions are deletions
               - Remaining positions are substitutions
-            - Modifies self.ref_offset for insertions to track position shifts
+            - Decrements self.ref_offset for insertions to track position adjustments
         """
         if index in event_indices:
             if event_indices.index(index) < num_insertions:
