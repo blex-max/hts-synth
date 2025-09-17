@@ -15,7 +15,7 @@ Install hts-synth and generate your first synthetic read:
 .. code-block:: bash
 
    pip install hts-synth
-   hts-synth ATCGATCG --substitution-probability 0.02
+   hts-synth --substitution-probability 0.02 ATCGATCG
 
 The library can be used both as a command-line tool for quick data generation; as a Python library for integration into larger bioinformatics applications or as a faker provider for testing data generation
 
