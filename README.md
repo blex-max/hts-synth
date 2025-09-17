@@ -116,14 +116,18 @@ python -m pytest
 # or
 pytest .
 ```
+  
+## Authors
 
-### Authors
+- **Alex Byrne** - Wellcome Sanger Institue - *ab63*  (Lead Developer/Contact)
+- **Hitham Hassan** - Wellcome Sanger Institue - *hh12*
+- **Rose Neis** - EMBL-EBI - *rneis*
+- **Stephen N. Hulme** - Wellcome Sanger Institue - *stephen.hulme*
+- **Tom Drever** - Wellcome Sanger Institue - *td14*
+- **Willem S. van Heerden** - Wellcome Sanger Institue - *wh5*
+- **Helen Schuilenburg** - Wellcome Sanger Institue - *hs21*
+- **Luca Barbon** - Wellcome Sanger Institue
 
-- Alex Byrne - Wellcome Sanger Institue (ab63 (at) sanger.ac.uk - Lead Developer/Contact)
-- Helen Schuilenburg - Wellcome Sanger Institue (hs21 (at) sanger.ac.uk)
-- Hitham Hassan - Wellcome Sanger Institue (hh12 (at) sanger.ac.uk)
-- Luca Barbon - Wellcome Sanger Institue (lb29 (at) sanger.ac.uk)
-- Rose Neis - EMBL-EBI (rneis (at) ebi.ac.uk)
-- Stephen N. Hulme - Wellcome Sanger Institue (stephen.hulme (at) sanger.ac.uk)
-- Tom Drever - Wellcome Sanger Institue (td14 (at) sanger.ac.uk)
-- Willem S. van Heerden - Wellcome Sanger Institue (wh5 (at) sanger.ac.uk)
+For Sanger-affiliated author emails are *username* (at) sanger.ac.uk  
+For EMBL-EBI use (at) ebi.ac.uk
+
