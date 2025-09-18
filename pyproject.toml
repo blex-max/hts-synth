@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 include = ["hts_synth*"]
 
 [project]
-name = "hts-synth"
+name = "hts_synth"
 version = "0.0.0-alpha0"
 description = "constrained generators for synthetic hts data"
 authors = [

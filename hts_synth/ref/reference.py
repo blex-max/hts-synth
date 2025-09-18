@@ -1,4 +1,5 @@
 import pysam
+from pysam.libcfaidx import FastaFile
 
 from ..ref.generate_variant import VariantGenerator
 from ..ref.seq_converter import apply_variants
@@ -6,10 +7,10 @@ from ..ref.seq_converter import apply_variants
 
 class ReferenceSegment:
     def __init__(self, chrom: str, start: int, end: int, sequence: str):
-        self.chrom = chrom
-        self.start = start
-        self.end = end
-        self.sequence = sequence
+        self.chrom: str = chrom
+        self.start: int = start
+        self.end: int = end
+        self.sequence: str = sequence
 
 
 class Reference:
@@ -17,7 +18,7 @@ class Reference:
         """
         Initialise a Reference to hold reference information.
         """
-        self.fasta = pysam.FastaFile(fasta_path)
+        self.fasta: FastaFile = pysam.FastaFile(fasta_path)
 
     def get_sequence(self, chrom: str, start: int, end: int):
         """
@@ -28,7 +29,7 @@ class Reference:
         seq = self.fasta.fetch(chrom, start, end)
         return ReferenceSegment(chrom, start, end, seq)
 
-    def get_mutated_sequence(self, chrom: str, start: int, end: int, events: list):
+    def get_mutated_sequence(self, chrom: str, start: int, end: int, events: list[int]):
         """
         Coordinates are 0-based, end-exclusive.
 
