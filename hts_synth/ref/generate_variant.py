@@ -5,6 +5,7 @@ import numpy as np
 
 from .enums import VariantType
 from .variant import Variant
+from .constraints import EditEvent, Constraints
 
 
 class VariantGenerator:
@@ -20,9 +21,10 @@ class VariantGenerator:
         ref_offset (int): Tracking offset for reference sequence position adjustments.
         events (Sequence[int]): Number of each variant type to generate.
         ref_sequence (str): The reference genomic sequence.
+        constraints (Constraints): Container for post-sequencing edit events to apply.
     """
 
-    def __init__(self, ref_sequence: str, events: Sequence[int]):
+    def __init__(self, ref_sequence: str, events: Sequence[int], constraints: Constraints=None):
         """
         Initialise a VariantGenerator with a reference sequence and event counts.
 
@@ -33,6 +35,7 @@ class VariantGenerator:
                                   - events[0]: Number of insertions (VariantType.INSERTION)
                                   - events[1]: Number of deletions (VariantType.DELETION)
                                   - events[2]: Number of substitutions (VariantType.SUBSTITUTION)
+            constraints (Constraints): The optional set of complex imposed edits post-sequencing.
 
         Note:
             The events parameter should have at least 3 elements corresponding to
@@ -42,6 +45,7 @@ class VariantGenerator:
         self.ref_offset: int = 0
         self.events: Sequence[int] = events
         self.ref_sequence: str = ref_sequence
+        self.constraints: Constraints = constraints
 
     def generate_random_variant_sequence(self):
         """
@@ -75,6 +79,9 @@ class VariantGenerator:
 
             variant = Variant(pos=i, ref=ref, alt=alt)
             variant_sequence.append(variant)
+
+        for edit_event in self.constraints:
+            variant_sequence.append(edit_event)
 
         return variant_sequence
 
