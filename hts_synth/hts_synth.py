@@ -63,12 +63,7 @@ CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
     "reference-sequence",
     metavar="REF",
 )
-@click.argument(
-    "n-reads",
-    metavar="NREADS",
-    default=1,
-    type=int
-)
+@click.argument("n-reads", metavar="NREADS", default=1, type=int)
 def cli(
     reference_chrom: str | None,
     reference_start: int,

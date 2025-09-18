@@ -85,7 +85,7 @@ class ReadGenerator:
         if error_probabilities:
             self.error_probabilities = error_probabilities
 
-        self.paired = paired
+        self.paired: bool = paired
 
     def _generate(self) -> AlignedSegment:
         """
