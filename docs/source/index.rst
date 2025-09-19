@@ -7,6 +7,12 @@ Welcome to hts-synth Documentation
 =======================
 **hts-synth** is a Python library for generating synthetic high-throughput sequencing (HTS) data. It provides constrained generators that create realistic sequencing reads with configurable error profiles, making it ideal for testing bioinformatics pipelines and exploring genomic analysis workflows.
 
+.. note::
+   **hts-synth** is currently in pre-alpha.
+   This means the library is still under active development, and its API, features, and behaviour may change without notice.
+   While the core functionality is usable for experimentation and prototyping, it is not yet considered stable for production use.
+   Users are encouraged to try it out, report issues, and provide feedback to help guide development, but should expect possible breaking changes in future releases.
+
 Quick Start
 -----------
 
