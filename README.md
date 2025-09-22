@@ -10,8 +10,8 @@ Biodev Hackathon 2025 - constrained generation of HTS data for testing and explo
 **Note**  
 > **hts-synth** is currently in pre-alpha.  
 > This means the library is still under active development, and its API, features, and behaviour may change without notice.  
-> While the core functionality is usable for experimentation and prototyping, it is not yet considered stable for production use, and is feature-incomplete.  
-> Users are encouraged to try it out, report issues, and provide feedback to help guide development, but should expect possible breaking changes, and cool new features, in future releases.
+> Core functionality is usable for experimentation and prototyping, but is feature-incomplete.  
+> Users are encouraged to try it out, report issues, and provide feedback to help guide development, but should expect possible breaking changes (and cool new features) in future releases.
 
 
 ## Installation
