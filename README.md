@@ -3,15 +3,15 @@
 [![license](https://img.shields.io/badge/License-MIT-a51931?style=for-the-badge)](LICENSE.txt)
 [![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=for-the-badge&logo=readthedocs)](https://blex-max.github.io/hts-synth/)
 
-# hts-synth (ALPHA STATUS - first release soon!)
+# hts-synth (*coming soon*)
 
 Biodev Hackathon 2025 - constrained generation of HTS data for testing and exploration.
 
-> **Note**  
+**Note**  
 > **hts-synth** is currently in pre-alpha.  
 > This means the library is still under active development, and its API, features, and behaviour may change without notice.  
-> While the core functionality is usable for experimentation and prototyping, it is not yet considered stable for production use.  
-> Users are encouraged to try it out, report issues, and provide feedback to help guide development, but should expect possible breaking changes in future releases.
+> While the core functionality is usable for experimentation and prototyping, it is not yet considered stable for production use, and is feature-incomplete.  
+> Users are encouraged to try it out, report issues, and provide feedback to help guide development, but should expect possible breaking changes, and cool new features, in future releases.
 
 
 ## Installation
